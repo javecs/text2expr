@@ -6,3 +6,25 @@
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/javecs/text2expr/blob/master/LICENSE)
 
 テキストを数式に変換します。
+
+## 使い方
+
+### Gradle
+
+  ```
+  repositories {
+      maven {
+          url  "http://dl.bintray.com/javecs/tools" 
+      }
+  }
+
+  compile 'xyz.javecs.tools:text2expr:0.0.2'
+  ```
+
+### 呼び出し方法 (Kotlin)
+
+  ```
+  val value = Text2Expr().eval("3 掛ける 5")
+  println(value) // "15" が出力されます。
+  ```
+  
