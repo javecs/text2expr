@@ -5,7 +5,7 @@
 [![Download](https://api.bintray.com/packages/javecs/tools/text2expr/images/download.svg) ](https://bintray.com/javecs/tools/text2expr/_latestVersion)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/javecs/text2expr/blob/master/LICENSE)
 
-テキストを数式に変換します。
+テキストを数式に変換し、計算します。
 
 ## 使い方
 
@@ -18,7 +18,7 @@
       }
   }
 
-  compile 'xyz.javecs.tools:text2expr:0.0.2'
+  compile 'xyz.javecs.tools:text2expr:0.0.+'
   ```
 
 ### 呼び出し方法 (Kotlin)
