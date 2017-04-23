@@ -15,7 +15,7 @@ plugins {
 }
 
 group 'xyz.javecs.tools'
-version '0.0.1'
+version '0.0.2'
 
 apply plugin: 'kotlin'
 apply plugin: 'jacoco'
@@ -26,7 +26,15 @@ repositories {
     mavenCentral()
 }
 
+repositories {
+    maven {
+        url  "http://dl.bintray.com/javecs/tools"
+    }
+}
+
 dependencies {
+    compile "xyz.javecs.tools:expr:0.2.3"
+    compile "com.google.guava:guava:21.0"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     testCompile 'junit:junit:4.12'
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
