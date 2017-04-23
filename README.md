@@ -28,3 +28,8 @@
   println(value) // "15" が出力されます。
   ```
   
+## 使うもの
+
+- [Kotlin 1.1](https://kotlinlang.org/)
+- [expr 0.2.+](https://github.com/javecs/expr/)
+
