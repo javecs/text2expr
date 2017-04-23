@@ -2,10 +2,25 @@ package xyz.javecs.tools.text2expr.test.kotlin
 
 import kotlin.test.assertEquals
 import org.junit.Test
-import xyz.javecs.tools.text2expr.greetings
+import xyz.javecs.tools.text2expr.utils.textToOperator
 
 class ConverterTest {
-    @Test fun test1() {
-        assertEquals("Hello, world", greetings("world"))
+    @Test fun mapper1() {
+        assertEquals("3*3", textToOperator("3곱하기3"))
+        assertEquals("3/3", textToOperator("3나누기3"))
+        assertEquals("3+3", textToOperator("3더하기3"))
+        assertEquals("3-3", textToOperator("3빼기3"))
     }
+
+    @Test fun mapper2() {
+        assertEquals("3*3", textToOperator("3掛ける3"))
+        assertEquals("3*3", textToOperator("3かける3"))
+        assertEquals("3/3", textToOperator("3割る3"))
+        assertEquals("3/3", textToOperator("3わる3"))
+        assertEquals("3+3", textToOperator("3足す3"))
+        assertEquals("3+3", textToOperator("3たす3"))
+        assertEquals("3-3", textToOperator("3引く3"))
+        assertEquals("3-3", textToOperator("3ひく3"))
+    }
+
 }
