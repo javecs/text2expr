@@ -2,7 +2,7 @@ package xyz.javecs.tools.text2expr.test.kotlin
 
 import kotlin.test.assertEquals
 import org.junit.Test
-import xyz.javecs.tools.text2expr.utils.textToOperator
+import xyz.javecs.tools.text2expr.parsers.textToOperator
 
 class ConverterTest {
     @Test fun mapper1() {

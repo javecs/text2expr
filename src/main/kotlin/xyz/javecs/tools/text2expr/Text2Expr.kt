@@ -2,7 +2,7 @@ package xyz.javecs.tools.text2expr
 
 import xyz.javecs.tools.expr.Calculator
 import xyz.javecs.tools.text2expr.utils.FunctionLoader
-import xyz.javecs.tools.text2expr.utils.textToOperator
+import xyz.javecs.tools.text2expr.parsers.textToOperator
 
 class Text2Expr {
     private val calc = Calculator()

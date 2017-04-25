@@ -1,4 +1,4 @@
-package xyz.javecs.tools.text2expr.utils
+package xyz.javecs.tools.text2expr.parsers
 
 private val operators = HashMap<String, String>().apply {
     put("掛ける", "*")
