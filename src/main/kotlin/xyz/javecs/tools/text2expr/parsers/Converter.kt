@@ -1,5 +1,10 @@
 package xyz.javecs.tools.text2expr.parsers
 
+import org.antlr.v4.runtime.CharStreams
+import org.antlr.v4.runtime.CommonTokenStream
+import xyz.javecs.tools.text2expr.parser.Text2ExprLexer
+import xyz.javecs.tools.text2expr.parser.Text2ExprParser
+
 private val operators = HashMap<String, String>().apply {
     put("掛ける", "*")
     put("かける", "*")
@@ -21,4 +26,11 @@ internal fun textToOperator(text: String): String {
         replaced = replaced.replace(key, value)
     }
     return replaced
+}
+
+internal fun parser(source: String): Text2ExprParser {
+    val charStream = CharStreams.fromString(source)
+    val lexer = Text2ExprLexer(charStream)
+    val tokens = CommonTokenStream(lexer)
+    return Text2ExprParser(tokens)
 }

@@ -9,7 +9,7 @@ class Text2Expr {
     private val loader = FunctionLoader()
 
     init {
-        calc.plugin(loader.read("miles2km"))
+        calc.plugin(loader.load("miles2km"))
     }
 
     fun eval(text: String): String = calc.eval(textToOperator(text)).value.toString()
