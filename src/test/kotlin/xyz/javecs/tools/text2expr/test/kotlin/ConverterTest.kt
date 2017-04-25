@@ -1,8 +1,10 @@
 package xyz.javecs.tools.text2expr.test.kotlin
 
-import kotlin.test.assertEquals
 import org.junit.Test
-import xyz.javecs.tools.text2expr.utils.textToOperator
+import xyz.javecs.tools.text2expr.parsers.parser
+import xyz.javecs.tools.text2expr.parsers.textToOperator
+import xyz.javecs.tools.text2expr.utils.read
+import kotlin.test.assertEquals
 
 class ConverterTest {
     @Test fun mapper1() {
@@ -21,6 +23,12 @@ class ConverterTest {
         assertEquals("3+3", textToOperator("3たす3"))
         assertEquals("3-3", textToOperator("3引く3"))
         assertEquals("3-3", textToOperator("3ひく3"))
+    }
+
+    @Test fun parser1() {
+        val source = read("parsers/parser1.txt")
+        val parser = parser(source)
+        assertEquals("Text2Expr.g4", parser.grammarFileName)
     }
 
 }
