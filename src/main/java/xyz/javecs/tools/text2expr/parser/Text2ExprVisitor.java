@@ -29,6 +29,12 @@ public interface Text2ExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWord(Text2ExprParser.WordContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Text2ExprParser#field}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitField(Text2ExprParser.FieldContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Text2ExprParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
