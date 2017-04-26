@@ -145,7 +145,7 @@ public class Text2ExprParser extends Parser {
 				setState(19); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << NUMBER) | (1L << ID))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << NUMBER) | (1L << ID) | (1L << NEWLINE))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -160,18 +160,38 @@ public class Text2ExprParser extends Parser {
 	}
 
 	public static class TextContext extends ParserRuleContext {
-		public WordContext word() {
-			return getRuleContext(WordContext.class,0);
-		}
-		public TerminalNode NEWLINE() { return getToken(Text2ExprParser.NEWLINE, 0); }
-		public TerminalNode ID() { return getToken(Text2ExprParser.ID, 0); }
 		public TextContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_text; }
+	 
+		public TextContext() { }
+		public void copyFrom(TextContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class WordAssignContext extends TextContext {
+		public TerminalNode ID() { return getToken(Text2ExprParser.ID, 0); }
+		public WordContext word() {
+			return getRuleContext(WordContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(Text2ExprParser.NEWLINE, 0); }
+		public WordAssignContext(TextContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitText(this);
+			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitWordAssign(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class WordDefineContext extends TextContext {
+		public WordContext word() {
+			return getRuleContext(WordContext.class,0);
+		}
+		public TerminalNode NEWLINE() { return getToken(Text2ExprParser.NEWLINE, 0); }
+		public WordDefineContext(TextContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitWordDefine(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -184,6 +204,7 @@ public class Text2ExprParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PREFIX:
+				_localctx = new WordDefineContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(21);
@@ -193,6 +214,7 @@ public class Text2ExprParser extends Parser {
 				}
 				break;
 			case ID:
+				_localctx = new WordAssignContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(24);
@@ -221,19 +243,52 @@ public class Text2ExprParser extends Parser {
 	}
 
 	public static class WordContext extends ParserRuleContext {
+		public WordContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_word; }
+	 
+		public WordContext() { }
+		public void copyFrom(WordContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class FieldAndContext extends WordContext {
 		public List<FieldContext> field() {
 			return getRuleContexts(FieldContext.class);
 		}
 		public FieldContext field(int i) {
 			return getRuleContext(FieldContext.class,i);
 		}
-		public WordContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_word; }
+		public FieldAndContext(WordContext ctx) { copyFrom(ctx); }
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitWord(this);
+			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitFieldAnd(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class FieldSingularContext extends WordContext {
+		public FieldContext field() {
+			return getRuleContext(FieldContext.class,0);
+		}
+		public FieldSingularContext(WordContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitFieldSingular(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class FieldOrContext extends WordContext {
+		public List<FieldContext> field() {
+			return getRuleContexts(FieldContext.class);
+		}
+		public FieldContext field(int i) {
+			return getRuleContext(FieldContext.class,i);
+		}
+		public FieldOrContext(WordContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitFieldOr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -246,6 +301,7 @@ public class Text2ExprParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
+				_localctx = new FieldOrContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(31);
@@ -257,6 +313,7 @@ public class Text2ExprParser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new FieldAndContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(35);
@@ -268,6 +325,7 @@ public class Text2ExprParser extends Parser {
 				}
 				break;
 			case 3:
+				_localctx = new FieldSingularContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(39);
@@ -329,6 +387,7 @@ public class Text2ExprParser extends Parser {
 	public static class ExprContext extends ParserRuleContext {
 		public TerminalNode NUMBER() { return getToken(Text2ExprParser.NUMBER, 0); }
 		public TerminalNode ID() { return getToken(Text2ExprParser.ID, 0); }
+		public TerminalNode NEWLINE() { return getToken(Text2ExprParser.NEWLINE, 0); }
 		public ExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -349,7 +408,7 @@ public class Text2ExprParser extends Parser {
 			{
 			setState(46);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << NUMBER) | (1L << ID))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << NUMBER) | (1L << ID) | (1L << NEWLINE))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -375,7 +434,7 @@ public class Text2ExprParser extends Parser {
 		"\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\6\2\16\n\2\r\2\16\2\17\3\2\3\2\6\2\24"+
 		"\n\2\r\2\16\2\25\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3 \n\3\3\4\3\4\3\4"+
 		"\3\4\3\4\3\4\3\4\3\4\3\4\5\4+\n\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\2\2\7\2"+
-		"\4\6\b\n\2\3\5\2\3\3\7\17\23\24\2\62\2\r\3\2\2\2\4\37\3\2\2\2\6*\3\2\2"+
+		"\4\6\b\n\2\3\5\2\3\3\7\17\23\25\2\62\2\r\3\2\2\2\4\37\3\2\2\2\6*\3\2\2"+
 		"\2\b,\3\2\2\2\n\60\3\2\2\2\f\16\5\4\3\2\r\f\3\2\2\2\16\17\3\2\2\2\17\r"+
 		"\3\2\2\2\17\20\3\2\2\2\20\21\3\2\2\2\21\23\7\25\2\2\22\24\5\n\6\2\23\22"+
 		"\3\2\2\2\24\25\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\3\3\2\2\2\27\30"+

@@ -17,17 +17,40 @@ public interface Text2ExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitText2expr(Text2ExprParser.Text2exprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Text2ExprParser#text}.
+	 * Visit a parse tree produced by the {@code WordDefine}
+	 * labeled alternative in {@link Text2ExprParser#text}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitText(Text2ExprParser.TextContext ctx);
+	T visitWordDefine(Text2ExprParser.WordDefineContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Text2ExprParser#word}.
+	 * Visit a parse tree produced by the {@code WordAssign}
+	 * labeled alternative in {@link Text2ExprParser#text}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWord(Text2ExprParser.WordContext ctx);
+	T visitWordAssign(Text2ExprParser.WordAssignContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FieldOr}
+	 * labeled alternative in {@link Text2ExprParser#word}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFieldOr(Text2ExprParser.FieldOrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FieldAnd}
+	 * labeled alternative in {@link Text2ExprParser#word}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFieldAnd(Text2ExprParser.FieldAndContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FieldSingular}
+	 * labeled alternative in {@link Text2ExprParser#word}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFieldSingular(Text2ExprParser.FieldSingularContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Text2ExprParser#field}.
 	 * @param ctx the parse tree

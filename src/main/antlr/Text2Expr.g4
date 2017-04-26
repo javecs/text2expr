@@ -1,15 +1,17 @@
 grammar Text2Expr;
 
 text2expr: text+ NEWLINE expr+ ;
-text: word NEWLINE
-    | ID '=' word NEWLINE
+text: word NEWLINE                  # WordDefine
+    | ID '=' word NEWLINE           # WordAssign
     ;
-word: field '|' field
-    | field '&' field
-    | field
+word: field '|' field               # FieldOr
+    | field '&' field               # FieldAnd
+    | field                         # FieldSingular
     ;
 field: PREFIX ':' JAPANESE ;
-expr: '^' | '+' | '-' | '*' | '/' | '%' | '(' | ')' | '=' | ',' | NUMBER | ID ;
+expr: '^' | '+' | '-' | '*' | '/' | '%' | '(' | ')' | '=' | ',' | NUMBER | ID
+    | NEWLINE
+    ;
 
 // SF : Source form
 // PS : Part-of-Speech
