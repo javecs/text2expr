@@ -7,7 +7,7 @@ import xyz.javecs.tools.text2expr.parser.Text2ExprLexer
 import xyz.javecs.tools.text2expr.parser.Text2ExprParser
 
 data class Field(var key: String = "", var value: List<String> = ArrayList())
-class Word(var fields: ArrayList<Field> = ArrayList())
+class Word(var fields: ArrayList<Field> = ArrayList(), val id: String = "")
 
 internal fun parser(source: String): Text2ExprParser {
     val charStream = CharStreams.fromString(source)
@@ -26,7 +26,7 @@ internal class RuleParser : Text2ExprBaseVisitor<Unit>() {
     }
 
     override fun visitWordAssign(ctx: Text2ExprParser.WordAssignContext): Unit {
-        rule.add(Word())
+        rule.add(Word(id = ctx.ID().text))
         super.visitWordAssign(ctx)
     }
 

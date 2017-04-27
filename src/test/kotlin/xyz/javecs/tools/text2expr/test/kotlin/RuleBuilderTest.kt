@@ -1,5 +1,6 @@
 package xyz.javecs.tools.text2expr.test.kotlin
 
+import org.junit.Rule
 import org.junit.Test
 import xyz.javecs.tools.text2expr.parsers.RuleBuilder
 import xyz.javecs.tools.text2expr.utils.read
@@ -49,5 +50,12 @@ class RuleBuilderTest {
         val source = read("rules/rule3.txt")
         val builder = RuleBuilder(source)
         assertEquals(256, builder.eval("なんでも").value)
+    }
+
+    @Test fun rule4() {
+        val source = read("rules/rule4.txt")
+        val builder = RuleBuilder(source)
+        assertEquals("x", builder.rule()[0].id)
+        assertEquals("y", builder.rule()[1].id)
     }
 }
