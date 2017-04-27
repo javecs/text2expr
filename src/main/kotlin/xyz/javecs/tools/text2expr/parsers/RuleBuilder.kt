@@ -5,7 +5,6 @@ import org.antlr.v4.runtime.CommonTokenStream
 import xyz.javecs.tools.text2expr.parser.Text2ExprBaseVisitor
 import xyz.javecs.tools.text2expr.parser.Text2ExprLexer
 import xyz.javecs.tools.text2expr.parser.Text2ExprParser
-import kotlin.collections.ArrayList
 
 fun parser(source: String): Text2ExprParser {
     val charStream = CharStreams.fromString(source)
@@ -14,46 +13,33 @@ fun parser(source: String): Text2ExprParser {
     return Text2ExprParser(tokens)
 }
 
-data class Field(val key: String, val value: String)
-class Word {
-    var anyOf = ArrayList<Field>()
-    var allOf = ArrayList<Field>()
-}
-
-internal fun Text2ExprParser.FieldContext.create(): Field = Field(this!!.PREFIX().text, this.JAPANESE().text)
+data class Field(var key: String = "", var value: List<String> = ArrayList())
+class Word(var fields: ArrayList<Field> = ArrayList())
 
 internal class RuleInterpreter : Text2ExprBaseVisitor<Unit>() {
     var expr = StringBuffer()
     var rule = ArrayList<Word>()
 
-    override fun visitFieldAnd(ctx: Text2ExprParser.FieldAndContext?) {
-        val left = ctx!!.field(0).create()
-        val right = ctx.field(1).create()
-
-        val word = Word()
-        word.allOf.addAll(arrayOf(left, right))
-        rule.add(word)
+    override fun visitWordDefine(ctx: Text2ExprParser.WordDefineContext): Unit {
+        rule.add(Word())
+        super.visitWordDefine(ctx)
     }
 
-    override fun visitFieldOr(ctx: Text2ExprParser.FieldOrContext?) {
-        val left = ctx!!.field(0).create()
-        val right = ctx.field(1).create()
-
-        val word = Word()
-        word.anyOf.addAll(arrayOf(left, right))
-        rule.add(word)
+    override fun visitWordAssign(ctx: Text2ExprParser.WordAssignContext): Unit {
+        rule.add(Word())
+        super.visitWordAssign(ctx)
     }
 
-    override fun visitFieldSingular(ctx: Text2ExprParser.FieldSingularContext?) {
-        val word = Word()
-        word.anyOf.add(ctx!!.field().create())
-        rule.add(word)
+    override fun visitField(ctx: Text2ExprParser.FieldContext): Unit {
+        val field = Field()
+        field.key = ctx.PREFIX().text
+        field.value = ctx.value().text.split("|").toList()
+        rule.last().fields.add(field)
     }
 
-    override fun visitExpr(ctx: Text2ExprParser.ExprContext?): Unit {
-        expr.append(ctx!!.text)
+    override fun visitExpr(ctx: Text2ExprParser.ExprContext): Unit {
+        expr.append(ctx.text)
     }
-
 }
 
 class RuleBuilder(source: String) {
