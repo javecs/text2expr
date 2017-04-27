@@ -2,6 +2,7 @@ package xyz.javecs.tools.text2expr.parsers
 
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
+import xyz.javecs.tools.expr.Calculator
 import xyz.javecs.tools.text2expr.parser.Text2ExprBaseVisitor
 import xyz.javecs.tools.text2expr.parser.Text2ExprLexer
 import xyz.javecs.tools.text2expr.parser.Text2ExprParser
@@ -42,6 +43,7 @@ internal class RuleInterpreter : Text2ExprBaseVisitor<Unit>() {
     }
 }
 
+data class Evaluation(val value:Number = Double.NaN)
 class RuleBuilder(source: String) {
     private val interpreter = RuleInterpreter()
 
@@ -54,4 +56,9 @@ class RuleBuilder(source: String) {
             .split(System.lineSeparator())
             .filter { it.isNotEmpty() }
             .toTypedArray()
+    fun eval(text: String): Evaluation {
+        val calc = Calculator()
+        expr().forEach { calc.eval(it) }
+        return Evaluation(calc.value)
+    }
 }
