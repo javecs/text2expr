@@ -44,4 +44,10 @@ class RuleBuilderTest {
         assertEquals("デス", word4field3.value[0])
         assertEquals("です", word4field3.value[1])
     }
+
+    @Test fun rule3() {
+        val source = read("rules/rule3.txt")
+        val builder = RuleBuilder(source)
+        assertEquals(256, builder.eval("なんでも").value)
+    }
 }
