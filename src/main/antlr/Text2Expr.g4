@@ -4,14 +4,14 @@ text2expr: text+ NEWLINE expr+ ;
 text: word NEWLINE                  # WordDefine
     | ID '=' word NEWLINE           # WordAssign
     ;
-word: field '|' field               # FieldOr
-    | field '&' field               # FieldAnd
-    | field                         # FieldSingular
+word: word ',' word
+    | field
     ;
-field: PREFIX ':' JAPANESE ;
-expr: '^' | '+' | '-' | '*' | '/' | '%' | '(' | ')' | '=' | ',' | NUMBER | ID
-    | NEWLINE
+field: PREFIX op=(':'|'?') value ;
+value: value '|' value
+    | JAPANESE
     ;
+expr: .+ | NEWLINE ;
 
 // SF : Source form
 // PS : Part-of-Speech
@@ -26,6 +26,7 @@ LEVEL: [1234] ;
 // Knaji : 4E00–9FCF
 JAPANESE: ('\u3040'..'\u309F'|'\u30A0'..'\u30FF'|'\u4E00'..'\u9FFF')+ ;
 
+OPERATOR: ('^' | '+' | '-' | '*' | '/' | '%' | '(' | ')' | '=' | ',') ;
 NUMBER: [0-9]+('.'[0-9]+)? ;
 ID: [a-zA-Z][a-zA-Z0-9]* ;
 NEWLINE: '\r'? '\n' ;
