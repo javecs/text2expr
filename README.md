@@ -31,5 +31,6 @@
 ## 使うもの
 
 - [Kotlin 1.1](https://kotlinlang.org/)
+- [Kuromoji 0.9.0](https://github.com/atilika/kuromoji)
 - [expr 0.2.+](https://github.com/javecs/expr/)
 

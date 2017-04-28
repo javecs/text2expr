@@ -5,6 +5,7 @@ import org.junit.Test
 import xyz.javecs.tools.text2expr.parsers.RuleBuilder
 import xyz.javecs.tools.text2expr.utils.read
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class RuleBuilderTest {
     @Test fun rule1() {
@@ -49,7 +50,7 @@ class RuleBuilderTest {
     @Test fun rule3() {
         val source = read("rules/rule3.txt")
         val builder = RuleBuilder(source)
-        assertEquals(256, builder.eval("なんでも").value)
+        assertEquals(256, builder.eval("2^8").value)
     }
 
     @Test fun rule4() {
@@ -57,5 +58,13 @@ class RuleBuilderTest {
         val builder = RuleBuilder(source)
         assertEquals("x", builder.rule()[0].id)
         assertEquals("y", builder.rule()[1].id)
+    }
+
+    @Test fun rule5() {
+        val source = read("rules/rule5.txt")
+        val builder = RuleBuilder(source)
+        val text = "１マイルは何キロメートルですか？"
+        assertTrue(builder.matches(text))
+        assertEquals(1.60934, builder.eval(text).value)
     }
 }
