@@ -3,8 +3,10 @@ package xyz.javecs.tools.text2expr.parsers
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
 import xyz.javecs.tools.expr.Calculator
+import java.text.Normalizer
 
 private val tokenizer = Tokenizer()
+private fun normalize(text: String) = Normalizer.normalize(text, Normalizer.Form.NFKC)
 
 data class Evaluation(val value:Number = Double.NaN)
 class RuleBuilder(source: String) {
@@ -40,7 +42,7 @@ class RuleBuilder(source: String) {
             .filter { it.isNotEmpty() }
             .toTypedArray()
 
-    fun matches(text: String): Boolean {
+    fun matches(text: String, recognizedId: (id: Pair<String, String>) -> Unit = {}): Boolean {
         val tokens = tokenizer.tokenize(text)
         var start = -1
         for (word in rule()) {
@@ -48,17 +50,23 @@ class RuleBuilder(source: String) {
             if (start < 0) {
                 return false
             }
+            if (word.id.isNotEmpty()) {
+                recognizedId(Pair(word.id, tokens[start].surface))
+            }
         }
         return true
     }
 
     fun eval(text: String): Evaluation {
+        val norm = normalize(text)
         val calc = Calculator()
-        return if (matches(text)) {
+        val args = ArrayList<String>()
+        return if (matches(norm, { (key, value) -> args.add("$key = $value") })) {
+            args.forEach { calc.eval(it) }
             expr().forEach { calc.eval(it) }
             Evaluation(calc.value)
         } else {
-            Evaluation(calc.eval(text).value)
+            Evaluation(calc.eval(norm).value)
         }
     }
 }
