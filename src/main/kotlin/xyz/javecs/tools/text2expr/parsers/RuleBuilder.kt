@@ -17,19 +17,23 @@ class RuleBuilder(source: String) {
     }
 
     private fun indexOf(word: Word, tokens: List<Token>, start: Int): Int {
-        for ((key, value) in word.fields) {
-            for (i in start..tokens.lastIndex) {
-                val token = tokens[i]
+        for (i in start..tokens.lastIndex) {
+            val token = tokens[i]
+            var count = 0
+            for ((key, value) in word.fields) {
                 when (key) {
-                    "SF" -> if (value.contains(token.surface)) return i
-                    "P1" -> if (value.contains(token.partOfSpeechLevel1)) return i
-                    "P2" -> if (value.contains(token.partOfSpeechLevel2)) return i
-                    "P3" -> if (value.contains(token.partOfSpeechLevel3)) return i
-                    "P4" -> if (value.contains(token.partOfSpeechLevel4)) return i
-                    "BF" -> if (value.contains(token.baseForm)) return i
-                    "RD" -> if (value.contains(token.reading)) return i
-                    "PR" -> if (value.contains(token.pronunciation)) return i
+                    "SF" -> if (value.contains(token.surface)) count++
+                    "P1" -> if (value.contains(token.partOfSpeechLevel1)) count++
+                    "P2" -> if (value.contains(token.partOfSpeechLevel2)) count++
+                    "P3" -> if (value.contains(token.partOfSpeechLevel3)) count++
+                    "P4" -> if (value.contains(token.partOfSpeechLevel4)) count++
+                    "BF" -> if (value.contains(token.baseForm)) count++
+                    "RD" -> if (value.contains(token.reading)) count++
+                    "PR" -> if (value.contains(token.pronunciation)) count++
                 }
+            }
+            if (word.fields.size == count) {
+                return i
             }
         }
         return -1
@@ -66,7 +70,7 @@ class RuleBuilder(source: String) {
             expr().forEach { calc.eval(it) }
             Evaluation(calc.value)
         } else {
-            Evaluation(calc.eval(norm).value)
+            Evaluation()
         }
     }
 }

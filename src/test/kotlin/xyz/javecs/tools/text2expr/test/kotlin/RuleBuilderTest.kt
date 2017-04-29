@@ -50,7 +50,7 @@ class RuleBuilderTest {
     @Test fun rule3() {
         val source = read("rules/rule3.txt")
         val builder = RuleBuilder(source)
-        assertEquals(256, builder.eval("2^8").value)
+        assertEquals(Double.NaN, builder.eval("2^8").value)
     }
 
     @Test fun rule4() {
