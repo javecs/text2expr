@@ -1,16 +1,32 @@
 package xyz.javecs.tools.text2expr
 
 import xyz.javecs.tools.expr.Calculator
-import xyz.javecs.tools.text2expr.utils.FunctionLoader
-import xyz.javecs.tools.text2expr.parsers.textToOperator
+import xyz.javecs.tools.text2expr.parsers.RuleBuilder
+import xyz.javecs.tools.text2expr.utils.readRule
 
 class Text2Expr {
+    private val rules = ArrayList<RuleBuilder>()
     private val calc = Calculator()
-    private val loader = FunctionLoader()
 
     init {
-        calc.plugin(loader.load("miles2km"))
+        arrayOf("divide",
+                "multiply",
+                "mileToKilometer",
+                "minus",
+                "plus")
+                .forEach { rules.add(RuleBuilder(readRule(it))) }
     }
 
-    fun eval(text: String): String = calc.eval(textToOperator(text)).value.toString()
+    fun eval(text: String): String {
+        for (rule in rules) {
+            try {
+                val evaluation = rule.eval(text)
+                if (evaluation.value != Double.NaN) {
+                    return evaluation.value.toString()
+                }
+            } catch (e: Exception) {
+            }
+        }
+        return calc.eval(text).value.toString()
+    }
 }
