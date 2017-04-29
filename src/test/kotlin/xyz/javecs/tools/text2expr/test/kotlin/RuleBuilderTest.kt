@@ -67,4 +67,12 @@ class RuleBuilderTest {
         assertTrue(builder.matches(text))
         assertEquals(1.60934, builder.eval(text).value)
     }
+
+    @Test fun rule6() {
+        val source = read("rules/rule6.txt")
+        val builder = RuleBuilder(source)
+        assertEquals(1.60934, builder.eval("１マイルは何キロメートルですか？").value)
+        assertEquals(1.60934, builder.eval("1マイルは、何キロですか？").value)
+        assertEquals(151.27796, builder.eval("９４マイルは何キロメートルですか？").value)
+    }
 }
