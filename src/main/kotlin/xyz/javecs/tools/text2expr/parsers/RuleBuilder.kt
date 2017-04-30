@@ -3,10 +3,9 @@ package xyz.javecs.tools.text2expr.parsers
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
 import xyz.javecs.tools.expr.Calculator
-import java.text.Normalizer
+import xyz.javecs.tools.text2expr.utils.normalize
 
 private val tokenizer = Tokenizer()
-private fun normalize(text: String) = Normalizer.normalize(text, Normalizer.Form.NFKC)
 
 data class Evaluation(val value:Number = Double.NaN)
 class RuleBuilder(source: String) {
