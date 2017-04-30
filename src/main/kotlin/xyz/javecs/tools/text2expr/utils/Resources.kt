@@ -10,7 +10,6 @@ private val reflections = Reflections(null, ResourcesScanner())
 fun read(path: String) = Resources.toString(Resources.getResource(path), Charsets.UTF_8)!!
 fun resources(prefix: String): List<String> {
     return reflections.getResources(Pattern.compile(".+\\.txt")).stream()
-            .peek{ println(it) }
             .filter { it.startsWith("$prefix/") }
             .toList()
 }
