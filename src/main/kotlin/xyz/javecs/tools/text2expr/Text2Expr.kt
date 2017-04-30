@@ -9,7 +9,7 @@ class Text2Expr {
     private val calc = Calculator()
 
     init {
-        arrayOf("divide",
+        arrayOf("divide", "divide2",
                 "multiply",
                 "mileToKilometer",
                 "minus",
