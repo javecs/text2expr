@@ -18,20 +18,20 @@ class RuleBuilder(source: String) {
     private fun indexOf(word: Word, tokens: List<Token>, start: Int): Int {
         for (i in start..tokens.lastIndex) {
             val token = tokens[i]
-            var count = 0
+            var matched = 0
             for ((key, value) in word.fields) {
                 when (key) {
-                    "SF" -> if (value.contains(token.surface)) count++
-                    "P1" -> if (value.contains(token.partOfSpeechLevel1)) count++
-                    "P2" -> if (value.contains(token.partOfSpeechLevel2)) count++
-                    "P3" -> if (value.contains(token.partOfSpeechLevel3)) count++
-                    "P4" -> if (value.contains(token.partOfSpeechLevel4)) count++
-                    "BF" -> if (value.contains(token.baseForm)) count++
-                    "RD" -> if (value.contains(token.reading)) count++
-                    "PR" -> if (value.contains(token.pronunciation)) count++
+                    "SF" -> if (value.contains(token.surface)) matched++
+                    "P1" -> if (value.contains(token.partOfSpeechLevel1)) matched++
+                    "P2" -> if (value.contains(token.partOfSpeechLevel2)) matched++
+                    "P3" -> if (value.contains(token.partOfSpeechLevel3)) matched++
+                    "P4" -> if (value.contains(token.partOfSpeechLevel4)) matched++
+                    "BF" -> if (value.contains(token.baseForm)) matched++
+                    "RD" -> if (value.contains(token.reading)) matched++
+                    "PR" -> if (value.contains(token.pronunciation)) matched++
                 }
             }
-            if (word.fields.size == count) {
+            if (word.fields.size == matched) {
                 return i
             }
         }
