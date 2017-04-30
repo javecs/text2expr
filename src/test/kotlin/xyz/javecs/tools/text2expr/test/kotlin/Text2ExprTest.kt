@@ -24,6 +24,7 @@ class Text2ExprTest {
         assertEquals("15", text2Expr.eval("3 掛ける 5"))
         assertEquals("16", text2Expr.eval("4 かける 4"))
         assertEquals("60", text2Expr.eval("30 × 2"))
+        assertEquals("120", text2Expr.eval("24 x 5"))
     }
 
     @Test fun eval3() {

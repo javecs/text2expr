@@ -33,7 +33,10 @@ internal class RuleParser : Text2ExprBaseVisitor<Unit>() {
     override fun visitField(ctx: Text2ExprParser.FieldContext): Unit {
         val field = Field()
         field.key = ctx.PREFIX().text
-        field.value = ctx.value().text.split("|").toList()
+        field.value = ctx.value().text
+                .replace("\"", "")
+                .split("|")
+                .toList()
         rule.last().fields.add(field)
     }
 
