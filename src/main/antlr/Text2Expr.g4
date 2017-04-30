@@ -10,6 +10,7 @@ word: word ',' word
 field: PREFIX op=(':'|'?') value ;
 value: value '|' value
     | JAPANESE
+    | SYMBOL
     ;
 expr: .+ | NEWLINE ;
 
@@ -25,7 +26,7 @@ LEVEL: [1234] ;
 // Katakana : 30A0–30FF
 // Knaji : 4E00–9FCF
 JAPANESE: ('\u3040'..'\u309F'|'\u30A0'..'\u30FF'|'\u4E00'..'\u9FFF')+ ;
-
+SYMBOL: '"' '\u0021'..'\u007E'+ '"' ;
 OPERATOR: ('^' | '+' | '-' | '*' | '/' | '%' | '(' | ')' | '=' | ',') ;
 NUMBER: [0-9]+('.'[0-9]+)? ;
 ID: [a-zA-Z][a-zA-Z0-9]* ;

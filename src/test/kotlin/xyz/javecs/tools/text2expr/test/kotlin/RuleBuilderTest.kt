@@ -75,4 +75,16 @@ class RuleBuilderTest {
         assertEquals(1.60934, builder.eval("1マイルは、何キロですか？").value)
         assertEquals(151.27796, builder.eval("９４マイルは何キロメートルですか？").value)
     }
+
+    @Test fun rule7() {
+        val source = read("rules/rule7.txt")
+        val builder = RuleBuilder(source)
+        val expr = builder.expr()
+        assertEquals("x*y", expr[0])
+
+        val rule = builder.rule()
+        val word2field2 = rule[1].fields[1]
+        assertEquals("x", word2field2.value[0])
+        assertEquals(120, builder.eval("24 x 5").value)
+    }
 }

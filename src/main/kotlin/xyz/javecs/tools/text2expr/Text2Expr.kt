@@ -11,7 +11,7 @@ class Text2Expr {
 
     init {
         arrayOf("divide", "divide2", "divide3",
-                "multiply", "multiply2",
+                "multiply", "multiply2", "multiply3",
                 "mileToKilometer",
                 "minus", "minus2",
                 "plus")
