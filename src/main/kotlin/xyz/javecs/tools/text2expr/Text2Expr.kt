@@ -3,19 +3,15 @@ package xyz.javecs.tools.text2expr
 import xyz.javecs.tools.expr.Calculator
 import xyz.javecs.tools.text2expr.parsers.RuleBuilder
 import xyz.javecs.tools.text2expr.utils.normalize
-import xyz.javecs.tools.text2expr.utils.readRule
+import xyz.javecs.tools.text2expr.utils.read
+import xyz.javecs.tools.text2expr.utils.resources
 
-class Text2Expr {
+class Text2Expr(rulePath: String = "rules") {
     private val rules = ArrayList<RuleBuilder>()
     private val calc = Calculator()
 
     init {
-        arrayOf("divide", "divide2", "divide3",
-                "multiply", "multiply2", "multiply3",
-                "mileToKilometer",
-                "minus", "minus2",
-                "plus")
-                .forEach { rules.add(RuleBuilder(readRule(it))) }
+        resources(rulePath).forEach{ rules.add(RuleBuilder(read(it))) }
     }
 
     fun eval(text: String): String {

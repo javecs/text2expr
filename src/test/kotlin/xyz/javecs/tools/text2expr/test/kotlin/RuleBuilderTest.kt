@@ -1,6 +1,5 @@
 package xyz.javecs.tools.text2expr.test.kotlin
 
-import org.junit.Rule
 import org.junit.Test
 import xyz.javecs.tools.text2expr.parsers.RuleBuilder
 import xyz.javecs.tools.text2expr.utils.read
@@ -9,7 +8,7 @@ import kotlin.test.assertTrue
 
 class RuleBuilderTest {
     @Test fun rule1() {
-        val source = read("rules/rule1.txt")
+        val source = read("test-rules/rule1.txt")
         val builder = RuleBuilder(source)
         val expr = builder.expr()
         val rule = builder.rule()
@@ -19,7 +18,7 @@ class RuleBuilderTest {
     }
 
     @Test fun rule2() {
-        val source = read("rules/rule2.txt")
+        val source = read("test-rules/rule2.txt")
         val builder = RuleBuilder(source)
         val expr = builder.expr()
         val rule = builder.rule()
@@ -48,20 +47,20 @@ class RuleBuilderTest {
     }
 
     @Test fun rule3() {
-        val source = read("rules/rule3.txt")
+        val source = read("test-rules/rule3.txt")
         val builder = RuleBuilder(source)
         assertEquals(Double.NaN, builder.eval("2^8").value)
     }
 
     @Test fun rule4() {
-        val source = read("rules/rule4.txt")
+        val source = read("test-rules/rule4.txt")
         val builder = RuleBuilder(source)
         assertEquals("x", builder.rule()[0].id)
         assertEquals("y", builder.rule()[1].id)
     }
 
     @Test fun rule5() {
-        val source = read("rules/rule5.txt")
+        val source = read("test-rules/rule5.txt")
         val builder = RuleBuilder(source)
         val text = "１マイルは何キロメートルですか？"
         assertTrue(builder.matches(text))
@@ -69,7 +68,7 @@ class RuleBuilderTest {
     }
 
     @Test fun rule6() {
-        val source = read("rules/rule6.txt")
+        val source = read("test-rules/rule6.txt")
         val builder = RuleBuilder(source)
         assertEquals(1.60934, builder.eval("１マイルは何キロメートルですか？").value)
         assertEquals(1.60934, builder.eval("1マイルは、何キロですか？").value)
@@ -77,7 +76,7 @@ class RuleBuilderTest {
     }
 
     @Test fun rule7() {
-        val source = read("rules/rule7.txt")
+        val source = read("test-rules/rule7.txt")
         val builder = RuleBuilder(source)
         val expr = builder.expr()
         assertEquals("x*y", expr[0])
