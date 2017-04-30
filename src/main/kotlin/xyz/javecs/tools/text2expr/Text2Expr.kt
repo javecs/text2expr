@@ -2,6 +2,7 @@ package xyz.javecs.tools.text2expr
 
 import xyz.javecs.tools.expr.Calculator
 import xyz.javecs.tools.text2expr.parsers.RuleBuilder
+import xyz.javecs.tools.text2expr.utils.normalize
 import xyz.javecs.tools.text2expr.utils.readRule
 
 class Text2Expr {
@@ -9,10 +10,10 @@ class Text2Expr {
     private val calc = Calculator()
 
     init {
-        arrayOf("divide", "divide2",
-                "multiply",
+        arrayOf("divide", "divide2", "divide3",
+                "multiply", "multiply2",
                 "mileToKilometer",
-                "minus",
+                "minus", "minus2",
                 "plus")
                 .forEach { rules.add(RuleBuilder(readRule(it))) }
     }
@@ -27,6 +28,6 @@ class Text2Expr {
             } catch (e: Exception) {
             }
         }
-        return calc.eval(text).value.toString()
+        return calc.eval(normalize(text)).value.toString()
     }
 }
