@@ -48,13 +48,13 @@ class RuleBuilder(source: String) {
     fun matches(text: String, recognizedId: (id: Pair<String, String>) -> Unit = {}): Boolean {
         val tokens = tokenizer.tokenize(text)
         var start = -1
-        for (word in rule()) {
-            start = indexOf(word, tokens, start + 1)
+        rule().forEach {
+            start = indexOf(it, tokens, start + 1)
             if (start < 0) {
                 return false
             }
-            if (word.id.isNotEmpty()) {
-                recognizedId(Pair(word.id, tokens[start].surface))
+            if (it.id.isNotEmpty()) {
+                recognizedId(Pair(it.id, tokens[start].surface))
             }
         }
         return true
