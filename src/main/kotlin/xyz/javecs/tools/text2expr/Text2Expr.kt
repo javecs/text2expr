@@ -11,16 +11,14 @@ class Text2Expr(rulePath: String = "rules") {
     private val calc = Calculator()
 
     init {
-        resources(rulePath).forEach{ rules.add(RuleBuilder(read(it))) }
+        resources(rulePath).forEach { rules.add(RuleBuilder(read(it))) }
     }
 
     fun eval(text: String): String {
-        for (rule in rules) {
+        rules.forEach {
             try {
-                val evaluation = rule.eval(text)
-                if (evaluation.value != Double.NaN) {
-                    return evaluation.value.toString()
-                }
+                val evaluation = it.eval(text)
+                if (evaluation.value != Double.NaN) return evaluation.value.toString()
             } catch (e: Exception) {
             }
         }
