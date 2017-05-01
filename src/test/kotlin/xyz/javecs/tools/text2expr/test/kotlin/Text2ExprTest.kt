@@ -43,8 +43,4 @@ class Text2ExprTest {
         assertEquals("0", text2Expr.eval("3−3"))
     }
 
-    @Test fun eval6() {
-        assertEquals("151.27796", text2Expr.eval("９４マイルは何キロメートルですか？"))
-    }
-
 }
