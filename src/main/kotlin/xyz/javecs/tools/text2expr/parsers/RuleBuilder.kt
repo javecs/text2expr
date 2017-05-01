@@ -7,7 +7,7 @@ import xyz.javecs.tools.text2expr.utils.normalize
 
 private val tokenizer = Tokenizer()
 
-data class Evaluation(val value:Number = Double.NaN)
+data class Evaluation(val value: Number = Double.NaN)
 class RuleBuilder(source: String) {
     private val parser = RuleParser()
 
@@ -31,9 +31,7 @@ class RuleBuilder(source: String) {
                     "PR" -> if (value.contains(token.pronunciation)) matched++
                 }
             }
-            if (word.fields.size == matched) {
-                return i
-            }
+            if (word.fields.size == matched) return i
         }
         return -1
     }
@@ -50,12 +48,8 @@ class RuleBuilder(source: String) {
         var start = -1
         rule().forEach {
             start = indexOf(it, tokens, start + 1)
-            if (start < 0) {
-                return false
-            }
-            if (it.id.isNotEmpty()) {
-                recognizedId(Pair(it.id, tokens[start].surface))
-            }
+            if (start < 0) return false
+            if (it.id.isNotEmpty()) recognizedId(Pair(it.id, tokens[start].surface))
         }
         return true
     }
