@@ -18,7 +18,7 @@
       }
   }
 
-  compile 'xyz.javecs.tools:text2expr:0.0.+'
+  compile 'xyz.javecs.tools:text2expr:0.1.+'
   ```
 
 ### 呼び出し方法 (Kotlin)
