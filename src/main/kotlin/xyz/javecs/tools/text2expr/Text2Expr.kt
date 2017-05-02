@@ -14,11 +14,15 @@ class Text2Expr(rulePath: String = "rules") {
         resources(rulePath).forEach { rules.add(RuleBuilder(read(it))) }
     }
 
-    fun eval(text: String): String {
+    fun eval(text: String, rendered: Boolean = false): String {
         rules.forEach {
             try {
                 val evaluation = it.eval(text)
-                if (evaluation.value != Double.NaN) return evaluation.value.toString()
+                if (evaluation.value != Double.NaN) return if (rendered) {
+                    evaluation.rendered
+                } else {
+                    evaluation.value.toString()
+                }
             } catch (e: Exception) {
             }
         }

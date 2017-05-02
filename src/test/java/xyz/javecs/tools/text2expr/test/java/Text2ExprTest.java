@@ -8,7 +8,7 @@ public class Text2ExprTest {
     @Test
     public void testExpr() {
         Text2Expr text2Expr = new Text2Expr();
-        Assert.assertEquals("5", text2Expr.eval("3+2"));
+        Assert.assertEquals("5", text2Expr.eval("3+2", false));
     }
 
 }
