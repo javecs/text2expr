@@ -2,15 +2,17 @@ package xyz.javecs.tools.text2expr.parsers
 
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
+import org.stringtemplate.v4.ST
 import xyz.javecs.tools.expr.Calculator
 import xyz.javecs.tools.text2expr.utils.normalize
 
 private val tokenizer = Tokenizer()
+private val printValue = "これかな？\n<value>"
 
-data class Evaluation(val value: Number = Double.NaN)
-class RuleBuilder(source: String) {
+data class Evaluation(val value: Number = Double.NaN, val rendered: String = "")
+class RuleBuilder(source: String, template: String = printValue) {
     private val parser = RuleParser()
-
+    private val renderer = ST(template)
     init {
         parser.visit(parser(source).text2expr())
     }
@@ -61,9 +63,11 @@ class RuleBuilder(source: String) {
         return if (matches(norm, { (key, value) -> args.add("$key = $value") })) {
             args.forEach { calc.eval(it) }
             expr().forEach { calc.eval(it) }
-            Evaluation(calc.value)
+            renderer.add("value", calc.value)
+            Evaluation(calc.value, renderer.render())
         } else {
             Evaluation()
         }
     }
+
 }

@@ -17,4 +17,9 @@ class Text2ExprTest {
         assertEquals("1", Text2Expr().eval("1"))
     }
 
+    @Test fun eval2() {
+        assertEquals("2", Text2Expr().eval("1足す1"))
+        assertEquals("これかな？\n2", Text2Expr().eval("1足す1", rendered = true))
+    }
+
 }
