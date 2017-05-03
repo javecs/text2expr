@@ -63,6 +63,9 @@ class RuleBuilder(source: String, template: String = printValue) {
         return if (matches(norm, { (key, value) -> args.add("$key = $value") })) {
             args.forEach { calc.eval(it) }
             expr().forEach { calc.eval(it) }
+            calc.variables().forEach { renderer.add(it.key, it.value) }
+            renderer.add("expr", expr())
+            renderer.add("text", text)
             renderer.add("value", calc.value)
             Evaluation(calc.value, renderer.render())
         } else {
