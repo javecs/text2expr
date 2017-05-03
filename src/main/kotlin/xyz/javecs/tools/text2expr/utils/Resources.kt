@@ -8,6 +8,6 @@ import kotlin.streams.toList
 
 private val reflections = Reflections(null, ResourcesScanner())
 fun read(path: String) = Resources.toString(Resources.getResource(path), Charsets.UTF_8)!!
-fun resources(prefix: String) = reflections.getResources(Pattern.compile(".+\\.txt")).stream()
+fun resources(prefix: String, extension: String = "txt") = reflections.getResources(Pattern.compile(".+\\.$extension")).stream()
         .filter { it.startsWith("$prefix/") }
         .toList()
