@@ -11,7 +11,8 @@ class Text2Expr(rulePath: String = "rules") {
     private val calc = Calculator()
 
     init {
-        resources(rulePath).forEach { rules.add(RuleBuilder(read(it))) }
+        val reply = read("templates/reply.st")
+        resources(rulePath).forEach { rules.add(RuleBuilder(read(it), reply)) }
     }
 
     fun eval(text: String, rendered: Boolean = false): String {
