@@ -2,18 +2,14 @@ package xyz.javecs.tools.text2expr.parsers
 
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
-import org.stringtemplate.v4.ST
 import xyz.javecs.tools.expr.Calculator
 import xyz.javecs.tools.text2expr.utils.normalize
 
 private val tokenizer = Tokenizer()
-private val printValue = "これかな？\n<value>"
-
-data class Variable(val key:String, val value:Double)
-data class Evaluation(val value: Number = Double.NaN, val rendered: String = "")
-class RuleBuilder(source: String, template: String = printValue) {
+data class Evaluation(val value: Number = Double.NaN, val expr: List<String> = ArrayList(), val variables: Map<String, Double> = HashMap())
+class RuleBuilder(source: String) {
     private val parser = RuleParser()
-    private val renderer = ST(template)
+
     init {
         parser.visit(parser(source).text2expr())
     }
@@ -64,11 +60,7 @@ class RuleBuilder(source: String, template: String = printValue) {
         return if (matches(norm, { (key, value) -> args.add("$key = $value") })) {
             args.forEach { calc.eval(it) }
             expr().forEach { calc.eval(it) }
-            renderer.add("variables", calc.variables().map { Variable(it.key, it.value) }.toList())
-            renderer.add("expr", expr())
-            renderer.add("text", text)
-            renderer.add("value", calc.value)
-            Evaluation(calc.value, renderer.render())
+            Evaluation(calc.value, expr().toList(), calc.variables())
         } else {
             Evaluation()
         }
