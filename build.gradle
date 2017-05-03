@@ -39,7 +39,7 @@ dependencies {
     compile "xyz.javecs.tools:expr:0.2.4"
     compile "com.google.guava:guava:21.0"
     compile "com.atilika.kuromoji:kuromoji-ipadic:0.9.0"
-    compile "org.antlr:stringtemplate:4.0.2"
+    compile "org.antlr:ST4:4.0.8"
     compile "org.reflections:reflections:0.9.11"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     testCompile 'junit:junit:4.12'
