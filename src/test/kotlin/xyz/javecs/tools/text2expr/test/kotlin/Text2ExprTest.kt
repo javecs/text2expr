@@ -18,8 +18,19 @@ class Text2ExprTest {
     }
 
     @Test fun eval2() {
+        val reply = """
+            |x = 1.0
+            |y = 1.0
+            |
+            |こうだから、
+            |x+y
+            |
+            |答えは、
+            |2
+            |
+            """.trimMargin("|")
         assertEquals("2", Text2Expr().eval("1足す1"))
-        assertEquals("これかな？\n2", Text2Expr().eval("1足す1", rendered = true))
+        assertEquals(reply, Text2Expr().eval("1足す1", rendered = true))
     }
 
 }
