@@ -1,4 +1,4 @@
-package xyz.javecs.tools.text2expr.test.kotlin
+package xyz.javecs.tools.text2expr.test.kotlin.rules.arithmetic
 
 import org.junit.Test
 import xyz.javecs.tools.text2expr.Text2Expr

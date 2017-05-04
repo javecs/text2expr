@@ -31,21 +31,12 @@ class TemplateLoaderTest {
 
     @Test fun template5() {
         val expected = """
-            |<if(variables)>
-            |<variables:{v|<v.key> = <v.value>
-            |}>
-            |<endif>
-            |<if(expr)>
-            |こうだから、
-            |<expr:{e|<e>
-            |}>
-            |<endif>
             |答えは、
             |<value>
             |
             """.trimMargin("|")
         val config = TemplateLoader()
-        assertEquals(expected, config.templateOf("default"))
+        assertEquals(expected, config.templateOf("rules/length/mileToKilometer.txt"))
     }
 
 }

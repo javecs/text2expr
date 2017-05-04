@@ -7,9 +7,8 @@ import xyz.javecs.tools.text2expr.utils.normalize
 
 private val tokenizer = Tokenizer()
 data class Evaluation(val value: Number = Double.NaN, val expr: List<String> = ArrayList(), val variables: Map<String, Double> = HashMap())
-class RuleBuilder(source: String) {
+class RuleBuilder(source: String, val name: String = "") {
     private val parser = RuleParser()
-
     init {
         parser.visit(parser(source).text2expr())
     }
