@@ -1,31 +1,31 @@
 package xyz.javecs.tools.text2expr.test.kotlin
 
 import org.junit.Test
-import xyz.javecs.tools.text2expr.utils.TemplateConfig
+import xyz.javecs.tools.text2expr.utils.TemplateLoader
 import kotlin.test.assertEquals
 
-class TemplateConfigTest {
+class TemplateLoaderTest {
     @Test fun template1() {
-        val config = TemplateConfig("config/rule-template-test1.yml")
+        val config = TemplateLoader("config/rule-template-test1.yml")
         assertEquals("HELLO", config.templateOf("hello"))
         assertEquals("", config.templateOf("world"))
 
     }
 
     @Test fun template2() {
-        val config = TemplateConfig("config/rule-template-test2.yml")
+        val config = TemplateLoader("config/rule-template-test2.yml")
         assertEquals("HELLO", config.templateOf("hello"))
         assertEquals("WORLD", config.templateOf("world"))
     }
 
     @Test fun template3() {
-        val config = TemplateConfig("config/rule-template-test2.yml")
+        val config = TemplateLoader("config/rule-template-test2.yml")
         assertEquals("HELLO", config.templateOf("hello"))
         assertEquals("WORLD", config.templateOf("world"))
     }
 
     @Test fun template4() {
-        val config = TemplateConfig("config/rule-template-test1.yml", defaultTemplate = "Ok")
+        val config = TemplateLoader("config/rule-template-test1.yml", defaultTemplate = "Ok")
         assertEquals("Ok", config.templateOf("xyz"))
     }
 
@@ -44,7 +44,7 @@ class TemplateConfigTest {
             |<value>
             |
             """.trimMargin("|")
-        val config = TemplateConfig()
+        val config = TemplateLoader()
         assertEquals(expected, config.templateOf("default"))
     }
 
