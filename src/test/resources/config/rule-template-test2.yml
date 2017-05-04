@@ -1,0 +1,5 @@
+templates:
+  - rule: hello
+    template: config/templates/template1.st
+  - rule: world
+    template: config/templates/template2.st
