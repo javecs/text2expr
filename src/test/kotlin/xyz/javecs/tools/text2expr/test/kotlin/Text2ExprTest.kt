@@ -27,7 +27,6 @@ class Text2ExprTest {
             |
             |答えは、
             |2
-            |
             """.trimMargin("|")
         assertEquals("2", Text2Expr().eval("1足す1"))
         assertEquals(reply, Text2Expr().eval("1足す1", rendered = true))

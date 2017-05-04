@@ -9,7 +9,6 @@ class SimpleExprTest {
         val expected = """
         |答えは、
         |151.27796
-        |
         """.trimMargin("|")
         val text2Expr = Text2Expr()
         assertEquals(expected, text2Expr.eval("９４マイルは何キロメートルですか？", rendered = true))
