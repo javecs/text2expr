@@ -1,6 +1,7 @@
-package xyz.javecs.tools.text2expr.utils
+package xyz.javecs.tools.text2expr.templates
 
 import org.yaml.snakeyaml.Yaml
+import xyz.javecs.tools.text2expr.utils.read
 
 data class Templates(var templates: List<RuleTemplate> = ArrayList<RuleTemplate>())
 data class RuleTemplate(var rule:String = "", var template:String = "")

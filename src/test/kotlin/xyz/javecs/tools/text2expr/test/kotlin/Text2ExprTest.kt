@@ -2,7 +2,7 @@ package xyz.javecs.tools.text2expr.test.kotlin
 
 import org.junit.Test
 import xyz.javecs.tools.text2expr.Text2Expr
-import xyz.javecs.tools.text2expr.parsers.parser
+import xyz.javecs.tools.text2expr.rules.parser
 import xyz.javecs.tools.text2expr.utils.read
 import kotlin.test.assertEquals
 

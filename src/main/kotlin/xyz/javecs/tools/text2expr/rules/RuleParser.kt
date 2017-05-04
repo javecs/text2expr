@@ -1,4 +1,4 @@
-package xyz.javecs.tools.text2expr.parsers
+package xyz.javecs.tools.text2expr.rules
 
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream

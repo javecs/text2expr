@@ -1,4 +1,4 @@
-package xyz.javecs.tools.text2expr.parsers
+package xyz.javecs.tools.text2expr.rules
 
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
