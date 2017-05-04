@@ -1,5 +1,3 @@
 templates:
-  - rule: default
-    template: templates/reply.st
   - rule: rules/length/mileToKilometer.txt
     template: templates/simple-expr.st
