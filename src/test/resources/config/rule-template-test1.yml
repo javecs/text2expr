@@ -1,0 +1,3 @@
+templates:
+  - rule: hello
+    template: config/templates/template1.st
