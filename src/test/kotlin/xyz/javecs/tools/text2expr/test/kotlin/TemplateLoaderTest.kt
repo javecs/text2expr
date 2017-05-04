@@ -33,7 +33,6 @@ class TemplateLoaderTest {
         val expected = """
             |答えは、
             |<value>
-            |
             """.trimMargin("|")
         val config = TemplateLoader()
         assertEquals(expected, config.templateOf("rules/length/mileToKilometer.txt"))
