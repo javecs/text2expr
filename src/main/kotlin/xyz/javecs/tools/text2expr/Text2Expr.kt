@@ -1,10 +1,10 @@
 package xyz.javecs.tools.text2expr
 
 import xyz.javecs.tools.expr.Calculator
-import xyz.javecs.tools.text2expr.parsers.RuleBuilder
-import xyz.javecs.tools.text2expr.parsers.RuleRenderer
-import xyz.javecs.tools.text2expr.parsers.Variable
-import xyz.javecs.tools.text2expr.utils.TemplateLoader
+import xyz.javecs.tools.text2expr.rules.RuleBuilder
+import xyz.javecs.tools.text2expr.rules.RuleRenderer
+import xyz.javecs.tools.text2expr.rules.Variable
+import xyz.javecs.tools.text2expr.templates.TemplateLoader
 import xyz.javecs.tools.text2expr.utils.normalize
 import xyz.javecs.tools.text2expr.utils.read
 import xyz.javecs.tools.text2expr.utils.resources

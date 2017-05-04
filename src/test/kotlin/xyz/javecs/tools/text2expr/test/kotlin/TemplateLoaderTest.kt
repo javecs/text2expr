@@ -1,7 +1,7 @@
 package xyz.javecs.tools.text2expr.test.kotlin
 
 import org.junit.Test
-import xyz.javecs.tools.text2expr.utils.TemplateLoader
+import xyz.javecs.tools.text2expr.templates.TemplateLoader
 import kotlin.test.assertEquals
 
 class TemplateLoaderTest {

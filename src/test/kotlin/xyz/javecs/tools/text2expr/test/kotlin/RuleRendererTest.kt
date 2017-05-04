@@ -1,13 +1,10 @@
 package xyz.javecs.tools.text2expr.test.kotlin
 
 import org.junit.Test
-import xyz.javecs.tools.text2expr.Text2Expr
-import xyz.javecs.tools.text2expr.parsers.RuleBuilder
-import xyz.javecs.tools.text2expr.parsers.RuleRenderer
-import xyz.javecs.tools.text2expr.parsers.Variable
+import xyz.javecs.tools.text2expr.rules.RuleRenderer
+import xyz.javecs.tools.text2expr.rules.Variable
 import xyz.javecs.tools.text2expr.utils.read
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class RuleRendererTest {
     @Test fun renderer1() {
