@@ -1,3 +1,7 @@
 templates:
   - rule: rules/length/mileToKilometer.txt
     template: templates/simple-expr.st
+  - rule: rules/temperature/celsiusToFahrenheit.txt
+    template: templates/fahrenheit.st
+  - rule: rules/temperature/fahrenheitToCelsius.txt
+    template: templates/celsius.st
