@@ -86,4 +86,8 @@ class RuleBuilderTest {
         assertEquals("x", word2field2.value[0])
         assertEquals(120, builder.eval("24 x 5").value)
     }
+
+    @Test fun rule8() {
+
+    }
 }

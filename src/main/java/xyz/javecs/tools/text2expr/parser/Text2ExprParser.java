@@ -17,21 +17,21 @@ public class Text2ExprParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, PREFIX=6, LEVEL=7, JAPANESE=8, 
-		SYMBOL=9, OPERATOR=10, NUMBER=11, ID=12, NEWLINE=13, WS=14;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, PREFIX=8, LEVEL=9, 
+		JAPANESE=10, SYMBOL=11, OPERATOR=12, NUMBER=13, ID=14, NEWLINE=15, WS=16;
 	public static final int
 		RULE_text2expr = 0, RULE_text = 1, RULE_word = 2, RULE_field = 3, RULE_value = 4, 
-		RULE_expr = 5;
+		RULE_expr = 5, RULE_optionalValue = 6;
 	public static final String[] ruleNames = {
-		"text2expr", "text", "word", "field", "value", "expr"
+		"text2expr", "text", "word", "field", "value", "expr", "optionalValue"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'='", "','", "':'", "'?'", "'|'"
+		null, "'='", "','", "':'", "'?'", "'|'", "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, "PREFIX", "LEVEL", "JAPANESE", "SYMBOL", 
-		"OPERATOR", "NUMBER", "ID", "NEWLINE", "WS"
+		null, null, null, null, null, null, null, null, "PREFIX", "LEVEL", "JAPANESE", 
+		"SYMBOL", "OPERATOR", "NUMBER", "ID", "NEWLINE", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -114,36 +114,36 @@ public class Text2ExprParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(13); 
+			setState(15); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(12);
+				setState(14);
 				text();
 				}
 				}
-				setState(15); 
+				setState(17); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==PREFIX || _la==ID );
-			setState(17);
+			setState(19);
 			match(NEWLINE);
-			setState(19); 
+			setState(21); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(18);
+				setState(20);
 				expr();
 				}
 				}
-				setState(21); 
+				setState(23); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << PREFIX) | (1L << LEVEL) | (1L << JAPANESE) | (1L << SYMBOL) | (1L << OPERATOR) | (1L << NUMBER) | (1L << ID) | (1L << NEWLINE) | (1L << WS))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << PREFIX) | (1L << LEVEL) | (1L << JAPANESE) | (1L << SYMBOL) | (1L << OPERATOR) | (1L << NUMBER) | (1L << ID) | (1L << NEWLINE) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -198,16 +198,16 @@ public class Text2ExprParser extends Parser {
 		TextContext _localctx = new TextContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_text);
 		try {
-			setState(31);
+			setState(33);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case PREFIX:
 				_localctx = new WordDefineContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(23);
+				setState(25);
 				word(0);
-				setState(24);
+				setState(26);
 				match(NEWLINE);
 				}
 				break;
@@ -215,13 +215,13 @@ public class Text2ExprParser extends Parser {
 				_localctx = new WordAssignContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(26);
-				match(ID);
-				setState(27);
-				match(T__0);
 				setState(28);
-				word(0);
+				match(ID);
 				setState(29);
+				match(T__0);
+				setState(30);
+				word(0);
+				setState(31);
 				match(NEWLINE);
 				}
 				break;
@@ -277,11 +277,11 @@ public class Text2ExprParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			setState(34);
+			setState(36);
 			field();
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(41);
+			setState(43);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -292,16 +292,16 @@ public class Text2ExprParser extends Parser {
 					{
 					_localctx = new WordContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_word);
-					setState(36);
-					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-					setState(37);
-					match(T__1);
 					setState(38);
+					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+					setState(39);
+					match(T__1);
+					setState(40);
 					word(3);
 					}
 					} 
 				}
-				setState(43);
+				setState(45);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
 			}
@@ -342,9 +342,9 @@ public class Text2ExprParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44);
+			setState(46);
 			match(PREFIX);
-			setState(45);
+			setState(47);
 			((FieldContext)_localctx).op = _input.LT(1);
 			_la = _input.LA(1);
 			if ( !(_la==T__2 || _la==T__3) ) {
@@ -355,7 +355,7 @@ public class Text2ExprParser extends Parser {
 				_errHandler.reportMatch(this);
 				consume();
 			}
-			setState(46);
+			setState(48);
 			value(0);
 			}
 		}
@@ -372,6 +372,9 @@ public class Text2ExprParser extends Parser {
 
 	public static class ValueContext extends ParserRuleContext {
 		public TerminalNode JAPANESE() { return getToken(Text2ExprParser.JAPANESE, 0); }
+		public OptionalValueContext optionalValue() {
+			return getRuleContext(OptionalValueContext.class,0);
+		}
 		public TerminalNode SYMBOL() { return getToken(Text2ExprParser.SYMBOL, 0); }
 		public List<ValueContext> value() {
 			return getRuleContexts(ValueContext.class);
@@ -405,28 +408,48 @@ public class Text2ExprParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(59);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case JAPANESE:
 				{
-				setState(49);
+				setState(51);
 				match(JAPANESE);
+				setState(53);
+				_errHandler.sync(this);
+				switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+				case 1:
+					{
+					setState(52);
+					optionalValue();
+					}
+					break;
+				}
 				}
 				break;
 			case SYMBOL:
 				{
-				setState(50);
+				setState(55);
 				match(SYMBOL);
+				setState(57);
+				_errHandler.sync(this);
+				switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+				case 1:
+					{
+					setState(56);
+					optionalValue();
+					}
+					break;
+				}
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(58);
+			setState(66);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -435,18 +458,18 @@ public class Text2ExprParser extends Parser {
 					{
 					_localctx = new ValueContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_value);
-					setState(53);
+					setState(61);
 					if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-					setState(54);
+					setState(62);
 					match(T__4);
-					setState(55);
+					setState(63);
 					value(4);
 					}
 					} 
 				}
-				setState(60);
+				setState(68);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,7,_ctx);
 			}
 			}
 		}
@@ -479,13 +502,13 @@ public class Text2ExprParser extends Parser {
 		enterRule(_localctx, 10, RULE_expr);
 		try {
 			int _alt;
-			setState(67);
+			setState(75);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(62); 
+				setState(70); 
 				_errHandler.sync(this);
 				_alt = 1;
 				do {
@@ -493,7 +516,7 @@ public class Text2ExprParser extends Parser {
 					case 1:
 						{
 						{
-						setState(61);
+						setState(69);
 						matchWildcard();
 						}
 						}
@@ -501,19 +524,57 @@ public class Text2ExprParser extends Parser {
 					default:
 						throw new NoViableAltException(this);
 					}
-					setState(64); 
+					setState(72); 
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
+					_alt = getInterpreter().adaptivePredict(_input,8,_ctx);
 				} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(66);
+				setState(74);
 				match(NEWLINE);
 				}
 				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class OptionalValueContext extends ParserRuleContext {
+		public TerminalNode NUMBER() { return getToken(Text2ExprParser.NUMBER, 0); }
+		public OptionalValueContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_optionalValue; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof Text2ExprVisitor ) return ((Text2ExprVisitor<? extends T>)visitor).visitOptionalValue(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final OptionalValueContext optionalValue() throws RecognitionException {
+		OptionalValueContext _localctx = new OptionalValueContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_optionalValue);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(77);
+			match(T__5);
+			setState(78);
+			match(NUMBER);
+			setState(79);
+			match(T__6);
 			}
 		}
 		catch (RecognitionException re) {
@@ -552,25 +613,27 @@ public class Text2ExprParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20H\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\6\2\20\n\2\r\2\16\2\21\3\2\3\2"+
-		"\6\2\26\n\2\r\2\16\2\27\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3\"\n\3\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\7\4*\n\4\f\4\16\4-\13\4\3\5\3\5\3\5\3\5\3\6\3\6\3"+
-		"\6\5\6\66\n\6\3\6\3\6\3\6\7\6;\n\6\f\6\16\6>\13\6\3\7\6\7A\n\7\r\7\16"+
-		"\7B\3\7\5\7F\n\7\3\7\2\4\6\n\b\2\4\6\b\n\f\2\3\3\2\5\6\2I\2\17\3\2\2\2"+
-		"\4!\3\2\2\2\6#\3\2\2\2\b.\3\2\2\2\n\65\3\2\2\2\fE\3\2\2\2\16\20\5\4\3"+
-		"\2\17\16\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\23\3\2\2"+
-		"\2\23\25\7\17\2\2\24\26\5\f\7\2\25\24\3\2\2\2\26\27\3\2\2\2\27\25\3\2"+
-		"\2\2\27\30\3\2\2\2\30\3\3\2\2\2\31\32\5\6\4\2\32\33\7\17\2\2\33\"\3\2"+
-		"\2\2\34\35\7\16\2\2\35\36\7\3\2\2\36\37\5\6\4\2\37 \7\17\2\2 \"\3\2\2"+
-		"\2!\31\3\2\2\2!\34\3\2\2\2\"\5\3\2\2\2#$\b\4\1\2$%\5\b\5\2%+\3\2\2\2&"+
-		"\'\f\4\2\2\'(\7\4\2\2(*\5\6\4\5)&\3\2\2\2*-\3\2\2\2+)\3\2\2\2+,\3\2\2"+
-		"\2,\7\3\2\2\2-+\3\2\2\2./\7\b\2\2/\60\t\2\2\2\60\61\5\n\6\2\61\t\3\2\2"+
-		"\2\62\63\b\6\1\2\63\66\7\n\2\2\64\66\7\13\2\2\65\62\3\2\2\2\65\64\3\2"+
-		"\2\2\66<\3\2\2\2\678\f\5\2\289\7\7\2\29;\5\n\6\6:\67\3\2\2\2;>\3\2\2\2"+
-		"<:\3\2\2\2<=\3\2\2\2=\13\3\2\2\2><\3\2\2\2?A\13\2\2\2@?\3\2\2\2AB\3\2"+
-		"\2\2B@\3\2\2\2BC\3\2\2\2CF\3\2\2\2DF\7\17\2\2E@\3\2\2\2ED\3\2\2\2F\r\3"+
-		"\2\2\2\n\21\27!+\65<BE";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\22T\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\6\2\22\n\2\r\2\16\2\23"+
+		"\3\2\3\2\6\2\30\n\2\r\2\16\2\31\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3$\n"+
+		"\3\3\4\3\4\3\4\3\4\3\4\3\4\7\4,\n\4\f\4\16\4/\13\4\3\5\3\5\3\5\3\5\3\6"+
+		"\3\6\3\6\5\68\n\6\3\6\3\6\5\6<\n\6\5\6>\n\6\3\6\3\6\3\6\7\6C\n\6\f\6\16"+
+		"\6F\13\6\3\7\6\7I\n\7\r\7\16\7J\3\7\5\7N\n\7\3\b\3\b\3\b\3\b\3\b\2\4\6"+
+		"\n\t\2\4\6\b\n\f\16\2\3\3\2\5\6\2V\2\21\3\2\2\2\4#\3\2\2\2\6%\3\2\2\2"+
+		"\b\60\3\2\2\2\n=\3\2\2\2\fM\3\2\2\2\16O\3\2\2\2\20\22\5\4\3\2\21\20\3"+
+		"\2\2\2\22\23\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24\25\3\2\2\2\25\27\7"+
+		"\21\2\2\26\30\5\f\7\2\27\26\3\2\2\2\30\31\3\2\2\2\31\27\3\2\2\2\31\32"+
+		"\3\2\2\2\32\3\3\2\2\2\33\34\5\6\4\2\34\35\7\21\2\2\35$\3\2\2\2\36\37\7"+
+		"\20\2\2\37 \7\3\2\2 !\5\6\4\2!\"\7\21\2\2\"$\3\2\2\2#\33\3\2\2\2#\36\3"+
+		"\2\2\2$\5\3\2\2\2%&\b\4\1\2&\'\5\b\5\2\'-\3\2\2\2()\f\4\2\2)*\7\4\2\2"+
+		"*,\5\6\4\5+(\3\2\2\2,/\3\2\2\2-+\3\2\2\2-.\3\2\2\2.\7\3\2\2\2/-\3\2\2"+
+		"\2\60\61\7\n\2\2\61\62\t\2\2\2\62\63\5\n\6\2\63\t\3\2\2\2\64\65\b\6\1"+
+		"\2\65\67\7\f\2\2\668\5\16\b\2\67\66\3\2\2\2\678\3\2\2\28>\3\2\2\29;\7"+
+		"\r\2\2:<\5\16\b\2;:\3\2\2\2;<\3\2\2\2<>\3\2\2\2=\64\3\2\2\2=9\3\2\2\2"+
+		">D\3\2\2\2?@\f\5\2\2@A\7\7\2\2AC\5\n\6\6B?\3\2\2\2CF\3\2\2\2DB\3\2\2\2"+
+		"DE\3\2\2\2E\13\3\2\2\2FD\3\2\2\2GI\13\2\2\2HG\3\2\2\2IJ\3\2\2\2JH\3\2"+
+		"\2\2JK\3\2\2\2KN\3\2\2\2LN\7\21\2\2MH\3\2\2\2ML\3\2\2\2N\r\3\2\2\2OP\7"+
+		"\b\2\2PQ\7\17\2\2QR\7\t\2\2R\17\3\2\2\2\f\23\31#-\67;=DJM";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

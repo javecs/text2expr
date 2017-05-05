@@ -54,4 +54,10 @@ public interface Text2ExprVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpr(Text2ExprParser.ExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Text2ExprParser#optionalValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOptionalValue(Text2ExprParser.OptionalValueContext ctx);
 }

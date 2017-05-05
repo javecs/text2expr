@@ -6,8 +6,8 @@ import xyz.javecs.tools.text2expr.parser.Text2ExprBaseVisitor
 import xyz.javecs.tools.text2expr.parser.Text2ExprLexer
 import xyz.javecs.tools.text2expr.parser.Text2ExprParser
 
-data class Field(var key: String = "", var value: List<String> = ArrayList())
-class Word(var fields: ArrayList<Field> = ArrayList(), val id: String = "")
+data class Field(var key: String = "", var value: MutableList<String> = ArrayList(), var isOptional: Boolean = false, var optionalValue: Double = Double.NaN)
+class Word(var fields: MutableList<Field> = ArrayList(), val id: String = "")
 
 internal fun parser(source: String): Text2ExprParser {
     val charStream = CharStreams.fromString(source)
@@ -20,27 +20,34 @@ internal class RuleParser : Text2ExprBaseVisitor<Unit>() {
     var expr = StringBuffer()
     var rule = ArrayList<Word>()
 
-    override fun visitWordDefine(ctx: Text2ExprParser.WordDefineContext): Unit {
+    override fun visitWordDefine(ctx: Text2ExprParser.WordDefineContext) {
         rule.add(Word())
         super.visitWordDefine(ctx)
     }
 
-    override fun visitWordAssign(ctx: Text2ExprParser.WordAssignContext): Unit {
+    override fun visitWordAssign(ctx: Text2ExprParser.WordAssignContext) {
         rule.add(Word(id = ctx.ID().text))
         super.visitWordAssign(ctx)
     }
 
-    override fun visitField(ctx: Text2ExprParser.FieldContext): Unit {
+    override fun visitField(ctx: Text2ExprParser.FieldContext) {
         val field = Field()
+        if (ctx.op.text == "?") field.isOptional = true
         field.key = ctx.PREFIX().text
-        field.value = ctx.value().text
-                .replace("\"", "")
-                .split("|")
-                .toList()
+        field.value = ArrayList()
         rule.last().fields.add(field)
+        visit(ctx.value())
     }
 
-    override fun visitExpr(ctx: Text2ExprParser.ExprContext): Unit {
+    override fun visitValue(ctx: Text2ExprParser.ValueContext) {
+        val field = rule.last().fields.last()
+        if (ctx.JAPANESE() != null) field.value.add(ctx.JAPANESE().text)
+        if (ctx.SYMBOL() != null) field.value.add(ctx.SYMBOL().text.replace("\"", ""))
+        if (ctx.optionalValue() != null) field.optionalValue = ctx.optionalValue().NUMBER().text.toDouble()
+        ctx.value().forEach { visit(it) }
+    }
+
+    override fun visitExpr(ctx: Text2ExprParser.ExprContext) {
         expr.append(ctx.text)
     }
 }
