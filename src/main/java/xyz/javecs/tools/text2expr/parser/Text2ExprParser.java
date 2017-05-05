@@ -17,8 +17,8 @@ public class Text2ExprParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, PREFIX=8, LEVEL=9, 
-		JAPANESE=10, SYMBOL=11, OPERATOR=12, NUMBER=13, ID=14, NEWLINE=15, WS=16;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, PREFIX=8, JAPANESE=9, 
+		SYMBOL=10, OPERATOR=11, NUMBER=12, ID=13, NEWLINE=14, WS=15;
 	public static final int
 		RULE_text2expr = 0, RULE_text = 1, RULE_word = 2, RULE_field = 3, RULE_value = 4, 
 		RULE_expr = 5, RULE_optionalValue = 6;
@@ -30,7 +30,7 @@ public class Text2ExprParser extends Parser {
 		null, "'='", "','", "':'", "'?'", "'|'", "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, "PREFIX", "LEVEL", "JAPANESE", 
+		null, null, null, null, null, null, null, null, "PREFIX", "JAPANESE", 
 		"SYMBOL", "OPERATOR", "NUMBER", "ID", "NEWLINE", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -143,7 +143,7 @@ public class Text2ExprParser extends Parser {
 				setState(23); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << PREFIX) | (1L << LEVEL) | (1L << JAPANESE) | (1L << SYMBOL) | (1L << OPERATOR) | (1L << NUMBER) | (1L << ID) | (1L << NEWLINE) | (1L << WS))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << PREFIX) | (1L << JAPANESE) | (1L << SYMBOL) | (1L << OPERATOR) | (1L << NUMBER) | (1L << ID) | (1L << NEWLINE) | (1L << WS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -613,7 +613,7 @@ public class Text2ExprParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\22T\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\21T\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\6\2\22\n\2\r\2\16\2\23"+
 		"\3\2\3\2\6\2\30\n\2\r\2\16\2\31\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3$\n"+
 		"\3\3\4\3\4\3\4\3\4\3\4\3\4\7\4,\n\4\f\4\16\4/\13\4\3\5\3\5\3\5\3\5\3\6"+
@@ -622,18 +622,18 @@ public class Text2ExprParser extends Parser {
 		"\n\t\2\4\6\b\n\f\16\2\3\3\2\5\6\2V\2\21\3\2\2\2\4#\3\2\2\2\6%\3\2\2\2"+
 		"\b\60\3\2\2\2\n=\3\2\2\2\fM\3\2\2\2\16O\3\2\2\2\20\22\5\4\3\2\21\20\3"+
 		"\2\2\2\22\23\3\2\2\2\23\21\3\2\2\2\23\24\3\2\2\2\24\25\3\2\2\2\25\27\7"+
-		"\21\2\2\26\30\5\f\7\2\27\26\3\2\2\2\30\31\3\2\2\2\31\27\3\2\2\2\31\32"+
-		"\3\2\2\2\32\3\3\2\2\2\33\34\5\6\4\2\34\35\7\21\2\2\35$\3\2\2\2\36\37\7"+
-		"\20\2\2\37 \7\3\2\2 !\5\6\4\2!\"\7\21\2\2\"$\3\2\2\2#\33\3\2\2\2#\36\3"+
+		"\20\2\2\26\30\5\f\7\2\27\26\3\2\2\2\30\31\3\2\2\2\31\27\3\2\2\2\31\32"+
+		"\3\2\2\2\32\3\3\2\2\2\33\34\5\6\4\2\34\35\7\20\2\2\35$\3\2\2\2\36\37\7"+
+		"\17\2\2\37 \7\3\2\2 !\5\6\4\2!\"\7\20\2\2\"$\3\2\2\2#\33\3\2\2\2#\36\3"+
 		"\2\2\2$\5\3\2\2\2%&\b\4\1\2&\'\5\b\5\2\'-\3\2\2\2()\f\4\2\2)*\7\4\2\2"+
 		"*,\5\6\4\5+(\3\2\2\2,/\3\2\2\2-+\3\2\2\2-.\3\2\2\2.\7\3\2\2\2/-\3\2\2"+
 		"\2\60\61\7\n\2\2\61\62\t\2\2\2\62\63\5\n\6\2\63\t\3\2\2\2\64\65\b\6\1"+
-		"\2\65\67\7\f\2\2\668\5\16\b\2\67\66\3\2\2\2\678\3\2\2\28>\3\2\2\29;\7"+
-		"\r\2\2:<\5\16\b\2;:\3\2\2\2;<\3\2\2\2<>\3\2\2\2=\64\3\2\2\2=9\3\2\2\2"+
+		"\2\65\67\7\13\2\2\668\5\16\b\2\67\66\3\2\2\2\678\3\2\2\28>\3\2\2\29;\7"+
+		"\f\2\2:<\5\16\b\2;:\3\2\2\2;<\3\2\2\2<>\3\2\2\2=\64\3\2\2\2=9\3\2\2\2"+
 		">D\3\2\2\2?@\f\5\2\2@A\7\7\2\2AC\5\n\6\6B?\3\2\2\2CF\3\2\2\2DB\3\2\2\2"+
 		"DE\3\2\2\2E\13\3\2\2\2FD\3\2\2\2GI\13\2\2\2HG\3\2\2\2IJ\3\2\2\2JH\3\2"+
-		"\2\2JK\3\2\2\2KN\3\2\2\2LN\7\21\2\2MH\3\2\2\2ML\3\2\2\2N\r\3\2\2\2OP\7"+
-		"\b\2\2PQ\7\17\2\2QR\7\t\2\2R\17\3\2\2\2\f\23\31#-\67;=DJM";
+		"\2\2JK\3\2\2\2KN\3\2\2\2LN\7\20\2\2MH\3\2\2\2ML\3\2\2\2N\r\3\2\2\2OP\7"+
+		"\b\2\2PQ\7\16\2\2QR\7\t\2\2R\17\3\2\2\2\f\23\31#-\67;=DJM";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
