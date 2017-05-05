@@ -9,10 +9,11 @@ word: word ',' word
     ;
 field: PREFIX op=(':'|'?') value ;
 value: value '|' value
-    | JAPANESE
-    | SYMBOL
+    | JAPANESE optionalValue?
+    | SYMBOL optionalValue?
     ;
 expr: .+ | NEWLINE ;
+optionalValue: '(' NUMBER ')' ;
 
 // SF : Source form
 // PS : Part-of-Speech
