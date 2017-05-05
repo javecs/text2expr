@@ -8,8 +8,7 @@ class TemplateLoaderTest {
     @Test fun template1() {
         val config = TemplateLoader("config/rule-template-test1.yml")
         assertEquals("HELLO", config.templateOf("hello"))
-        assertEquals("", config.templateOf("world"))
-
+        assertEquals("<if(value)><value><endif>", config.templateOf("world"))
     }
 
     @Test fun template2() {
