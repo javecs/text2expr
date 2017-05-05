@@ -88,6 +88,9 @@ class RuleBuilderTest {
     }
 
     @Test fun rule8() {
-
+        val source = read("test-rules/rule8.txt")
+        val builder = RuleBuilder(source)
+        assertEquals(100, builder.eval("x 5").value)
+        assertEquals(50, builder.eval("10 x 5").value)
     }
 }

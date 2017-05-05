@@ -12,6 +12,7 @@ class LengthTest {
         assertEquals("151.27796", text2Expr.eval("９４マイルは何キロメートルですか？"))
         assertEquals("151.27796", text2Expr.eval("９４マイルは何キロですか？"))
         assertEquals("151.27796", text2Expr.eval("94mileは何kmですか？"))
+        assertEquals("1.60934", text2Expr.eval("マイルは、なんキロメートル？"))
     }
 
     @Test fun kilometerToMile() {

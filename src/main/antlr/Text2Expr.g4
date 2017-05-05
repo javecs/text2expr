@@ -20,8 +20,7 @@ optionalValue: '(' NUMBER ')' ;
 // BF : Base form
 // RD : Reading
 // PR : Pronunciation
-PREFIX: 'SF' | 'P'LEVEL | 'BF' | 'RD' | 'PR' ;
-LEVEL: [1234] ;
+PREFIX: 'SF' | 'P1' | 'P2' | 'P3' | 'P4' | 'BF' | 'RD' | 'PR' ;
 
 // Hiragana : 3040–309F
 // Katakana : 30A0–30FF

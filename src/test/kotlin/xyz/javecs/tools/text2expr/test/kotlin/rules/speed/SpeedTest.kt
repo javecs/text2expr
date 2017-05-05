@@ -10,6 +10,7 @@ class SpeedTest {
 
     @Test fun kilometerPerHourToMeterPerSecond() {
         assertEquals("30.555555555555557", text2Expr.eval("時速110キロの車は1秒間に何メートル進みますか？"))
+        assertEquals("30.555555555555557", text2Expr.eval("時速110キロの車は、秒間なんメートル進みますか？"))
     }
 
 }
