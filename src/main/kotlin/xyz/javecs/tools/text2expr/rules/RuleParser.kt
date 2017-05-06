@@ -6,7 +6,11 @@ import xyz.javecs.tools.text2expr.parser.Text2ExprBaseVisitor
 import xyz.javecs.tools.text2expr.parser.Text2ExprLexer
 import xyz.javecs.tools.text2expr.parser.Text2ExprParser
 
-data class Field(var key: String = "", var value: MutableList<String> = ArrayList(), var isOptional: Boolean = false, var optionalValue: Double = Double.NaN)
+data class Field(var key: String = "",
+                 var value: MutableList<String> = ArrayList(),
+                 var isOptional: Boolean = false,
+                 var optionalValue: Double = Double.NaN)
+
 class Word(var fields: MutableList<Field> = ArrayList(), val id: String = "") {
     fun isOptional() = fields.find { it.isOptional } != null
     fun optionalValue(): Double? = fields.find { it.isOptional }?.optionalValue
