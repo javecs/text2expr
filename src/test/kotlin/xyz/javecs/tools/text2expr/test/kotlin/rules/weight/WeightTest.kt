@@ -26,4 +26,9 @@ class WeightTest {
         assertEquals("113.3981g", text2Expr.eval("4オンス?", rendered = true))
     }
 
+    @Test fun poundOunceToKilogram1() {
+        assertEquals("3.40194", text2Expr.eval("7ポンド8オンスは、なんキログラム？"))
+        assertEquals("3.40194kg", text2Expr.eval("7ポンド8オンスは?", rendered = true))
+        assertEquals("1.02058", text2Expr.eval("2lb4ozは？"))
+    }
 }
