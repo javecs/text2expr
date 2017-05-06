@@ -65,7 +65,7 @@ class RuleBuilderTest {
         val text = "１マイルは何キロメートルですか？"
         val (matched, coverage) = builder.matches(text)
         assertTrue(matched)
-        assertEquals(0.5, coverage)
+        assertEquals(0.375, coverage)
         assertEquals(1.60934, builder.eval(text).value)
     }
 
