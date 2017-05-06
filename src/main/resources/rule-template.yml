@@ -7,3 +7,7 @@ templates:
     template: templates/celsius.st
   - rule: rules/weight/poundToKilogram.txt
     template: templates/kilogram.st
+  - rule: rules/weight/ounceToGram.txt
+    template: templates/gram.st
+  - rule: rules/weight/poundOunceToKilogram.txt
+    template: templates/kilogram.st
