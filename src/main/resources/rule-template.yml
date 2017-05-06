@@ -5,3 +5,5 @@ templates:
     template: templates/fahrenheit.st
   - rule: rules/temperature/fahrenheitToCelsius.txt
     template: templates/celsius.st
+  - rule: rules/weight/poundToKilogram.txt
+    template: templates/kilogram.st

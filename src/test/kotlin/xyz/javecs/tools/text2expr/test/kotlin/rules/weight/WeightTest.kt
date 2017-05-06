@@ -14,6 +14,7 @@ class WeightTest {
         assertEquals("0.45359", text2Expr.eval("1lbは、なんｋｇ？"))
         assertEquals("0.45359", text2Expr.eval("1lbをkgにしたら"))
         assertEquals("0.45359", text2Expr.eval("1ポンド？"))
+        assertEquals("1.36078kg", text2Expr.eval("3ポンド?", rendered = true))
     }
 
 }
