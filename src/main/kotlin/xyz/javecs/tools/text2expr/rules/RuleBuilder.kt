@@ -10,9 +10,13 @@ private val NotFound = -2
 private val Optional = -3
 private val tokenizer = Tokenizer()
 
-private fun coverage(scanned: Int, total: Int) = scanned.toDouble() / total.toDouble()
+private fun coverage(matched: Int, total: Int) = matched.toDouble() / total.toDouble()
 
-data class Evaluation(val value: Number = Double.NaN, val expr: List<String> = ArrayList(), val variables: Map<String, Double> = HashMap(), val coverage: Double = 0.0)
+data class Evaluation(val value: Number = Double.NaN,
+                      val expr: List<String> = ArrayList(),
+                      val variables: Map<String, Double> = HashMap(),
+                      val coverage: Double = 0.0,
+                      val rule: String = "")
 
 class RuleBuilder(source: String, val name: String = "") {
     private val parser = RuleParser()
@@ -53,16 +57,14 @@ class RuleBuilder(source: String, val name: String = "") {
         val tokens = tokenizer.tokenize(text)
         var offset = BaseOffset
         var remained = rule().size
-        var coverage = 0.0
         rule().forEach {
             val (index, optional) = indexOf(it, tokens, start = offset + 1, end = Math.min(tokens.size - remained, tokens.lastIndex))
-            if (index == NotFound) return Pair(false, coverage(index, tokens.size))
+            if (index == NotFound) return Pair(false, 0.0)
             if (it.id.isNotEmpty()) recognizedId(Pair(it.id, if (optional) it.optionalValue().toString() else tokens[index].surface))
             if (!optional) offset = index
-            coverage = coverage(index, tokens.size)
             remained--
         }
-        return Pair(true, coverage)
+        return Pair(true, coverage(rule().size, tokens.size))
     }
 
     fun eval(text: String): Evaluation {
@@ -72,9 +74,9 @@ class RuleBuilder(source: String, val name: String = "") {
         return if (matched) {
             args.forEach { calc.eval(it) }
             expr().forEach { calc.eval(it) }
-            Evaluation(calc.value, expr().toList(), calc.variables(), coverage)
+            Evaluation(calc.value, expr().toList(), calc.variables(), coverage, name)
         } else {
-            Evaluation()
+            Evaluation(rule = name)
         }
     }
 

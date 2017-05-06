@@ -26,4 +26,12 @@ class Text2ExprTest {
         assertEquals(reply, Text2Expr().eval("1足す1", rendered = true))
     }
 
+    @Test fun eval3() {
+        val text = "1マイルは、ざっくりなんキロメートル？"
+        assertEquals("1.60934", Text2Expr("test-best-match/rule1/rule2/rule3").eval(text))
+        assertEquals("1.6093", Text2Expr("test-best-match/rule1/rule2").eval(text))
+        assertEquals("1.609", Text2Expr("test-best-match/rule1").eval(text))
+        assertEquals("1.6", Text2Expr("test-best-match").eval(text))
+    }
+
 }
