@@ -17,4 +17,13 @@ class WeightTest {
         assertEquals("1.36078kg", text2Expr.eval("3ポンド?", rendered = true))
     }
 
+    @Test fun ounceToGram1() {
+        assertEquals("28.3495", text2Expr.eval("1オンスは、なんグラム？"))
+        assertEquals("28.3495", text2Expr.eval("オンスは、なんグラム？"))
+        assertEquals("28.3495", text2Expr.eval("1ozは、なんｇ？"))
+        assertEquals("28.3495", text2Expr.eval("1ozをgにしたら"))
+        assertEquals("28.3495", text2Expr.eval("1オンス？"))
+        assertEquals("113.3981g", text2Expr.eval("4オンス?", rendered = true))
+    }
+
 }
