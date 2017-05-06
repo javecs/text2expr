@@ -4,14 +4,16 @@ import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
 import xyz.javecs.tools.expr.Calculator
 import xyz.javecs.tools.text2expr.utils.normalize
-import javax.swing.text.html.Option
 
+private val BaseOffset = -1
 private val NotFound = -2
 private val Optional = -3
 private val tokenizer = Tokenizer()
+
 data class Evaluation(val value: Number = Double.NaN, val expr: List<String> = ArrayList(), val variables: Map<String, Double> = HashMap())
 class RuleBuilder(source: String, val name: String = "") {
     private val parser = RuleParser()
+
     init {
         parser.visit(parser(source).text2expr())
     }
@@ -46,15 +48,12 @@ class RuleBuilder(source: String, val name: String = "") {
 
     fun matches(text: String, recognizedId: (id: Pair<String, String>) -> Unit = {}): Boolean {
         val tokens = tokenizer.tokenize(text)
-        var offset = -1
+        var offset = BaseOffset
         var remained = rule().size
         rule().forEach {
             val (index, optional) = indexOf(it, tokens, start = offset + 1, end = Math.min(tokens.size - remained, tokens.lastIndex))
             if (index == NotFound) return false
-            if (it.id.isNotEmpty()) {
-                val value = if (optional) it.optionalValue().toString() else tokens[index].surface
-                recognizedId(Pair(it.id, value))
-            }
+            if (it.id.isNotEmpty()) recognizedId(Pair(it.id, if (optional) it.optionalValue().toString() else tokens[index].surface))
             if (!optional) offset = index
             remained--
         }
