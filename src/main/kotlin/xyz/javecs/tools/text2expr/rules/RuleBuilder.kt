@@ -10,7 +10,10 @@ private val NotFound = -2
 private val Optional = -3
 private val tokenizer = Tokenizer()
 
-data class Evaluation(val value: Number = Double.NaN, val expr: List<String> = ArrayList(), val variables: Map<String, Double> = HashMap())
+private fun coverage(scanned: Int, total: Int) = scanned.toDouble() / total.toDouble()
+
+data class Evaluation(val value: Number = Double.NaN, val expr: List<String> = ArrayList(), val variables: Map<String, Double> = HashMap(), val coverage: Double = 0.0)
+
 class RuleBuilder(source: String, val name: String = "") {
     private val parser = RuleParser()
 
@@ -46,28 +49,30 @@ class RuleBuilder(source: String, val name: String = "") {
             .filter { it.isNotEmpty() }
             .toTypedArray()
 
-    fun matches(text: String, recognizedId: (id: Pair<String, String>) -> Unit = {}): Boolean {
+    fun matches(text: String, recognizedId: (id: Pair<String, String>) -> Unit = {}): Pair<Boolean, Double> {
         val tokens = tokenizer.tokenize(text)
         var offset = BaseOffset
         var remained = rule().size
+        var coverage = 0.0
         rule().forEach {
             val (index, optional) = indexOf(it, tokens, start = offset + 1, end = Math.min(tokens.size - remained, tokens.lastIndex))
-            if (index == NotFound) return false
+            if (index == NotFound) return Pair(false, coverage(index, tokens.size))
             if (it.id.isNotEmpty()) recognizedId(Pair(it.id, if (optional) it.optionalValue().toString() else tokens[index].surface))
             if (!optional) offset = index
+            coverage = coverage(index, tokens.size)
             remained--
         }
-        return true
+        return Pair(true, coverage)
     }
 
     fun eval(text: String): Evaluation {
-        val norm = normalize(text)
         val calc = Calculator()
         val args = ArrayList<String>()
-        return if (matches(norm, { (key, value) -> args.add("$key = $value") })) {
+        val (matched, coverage) = matches(normalize(text), { (key, value) -> args.add("$key = $value") })
+        return if (matched) {
             args.forEach { calc.eval(it) }
             expr().forEach { calc.eval(it) }
-            Evaluation(calc.value, expr().toList(), calc.variables())
+            Evaluation(calc.value, expr().toList(), calc.variables(), coverage)
         } else {
             Evaluation()
         }
