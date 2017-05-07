@@ -1,13 +1,13 @@
 templates:
-  - rule: rules/length/mileToKilometer.txt
+  - rule: rules/length/milesToKilometers.txt
     template: templates/simple-expr.st
   - rule: rules/temperature/celsiusToFahrenheit.txt
     template: templates/fahrenheit.st
   - rule: rules/temperature/fahrenheitToCelsius.txt
     template: templates/celsius.st
-  - rule: rules/weight/poundToKilogram.txt
+  - rule: rules/weight/poundsToKilograms.txt
     template: templates/kilogram.st
-  - rule: rules/weight/ounceToGram.txt
+  - rule: rules/weight/ouncesToGrams.txt
     template: templates/gram.st
-  - rule: rules/weight/poundOunceToKilogram.txt
+  - rule: rules/weight/poundsOuncesToKilograms.txt
     template: templates/kilogram.st
