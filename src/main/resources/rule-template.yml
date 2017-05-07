@@ -11,3 +11,5 @@ templates:
     template: templates/gram.st
   - rule: rules/weight/poundsOuncesToKilograms.txt
     template: templates/kilogram.st
+  - rule: rules/volume/gallonsToLiters.txt
+    template: templates/liter.st
