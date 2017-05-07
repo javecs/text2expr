@@ -75,9 +75,6 @@ class RuleBuilder(source: String, val name: String = "") {
             args.forEach { calc.eval(it) }
             expr().forEach { calc.eval(it) }
             Evaluation(calc.value, expr().toList(), calc.variables(), coverage, name)
-        } else {
-            Evaluation(rule = name)
-        }
+        } else Evaluation(rule = name)
     }
-
 }
