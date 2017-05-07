@@ -54,4 +54,16 @@ class RuleRendererTest {
         renderer.add("value", 5, overwrite = true)
         assertEquals("5", renderer.render())
     }
+
+    @Test fun render3() {
+        val template = TemplateLoader().defaultTemplate
+        val rendered = RuleRenderer(template).apply {
+            add("value", "1")
+            add("value", "2")
+            add("value", "3")
+            add("value", "4")
+            add("value", "5")
+        }.render()
+        assertEquals("12345", rendered)
+    }
 }

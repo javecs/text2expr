@@ -27,12 +27,12 @@ class Text2Expr(rulePath: String = "rules") {
         } else {
             val bestMatch = evaluated.first()
             if (rendered) {
-                val renderer = RuleRenderer(templates.templateOf(bestMatch.rule))
-                renderer.add("variables", bestMatch.variables.map { Variable(it.key, it.value) }.toList())
-                renderer.add("expr", bestMatch.expr)
-                renderer.add("text", text)
-                renderer.add("value", bestMatch.value)
-                renderer.render()
+                RuleRenderer(templates.templateOf(bestMatch.rule)).apply {
+                    add("variables", bestMatch.variables.map { Variable(it.key, it.value) }.toList())
+                    add("expr", bestMatch.expr)
+                    add("text", text)
+                    add("value", bestMatch.value)
+                }.render()
             } else {
                 bestMatch.value.toString()
             }
