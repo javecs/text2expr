@@ -22,20 +22,15 @@ class Text2Expr(rulePath: String = "rules") {
                 .filterNot { it.value == Double.NaN }
                 .sortedByDescending { it.coverage }
                 .toList()
-        return if (evaluated.isEmpty()) {
-            Calculator().eval(normalize(text)).value.toString()
-        } else {
+        return if (evaluated.isNotEmpty()) {
             val bestMatch = evaluated.first()
-            if (rendered) {
-                RuleRenderer(templates.templateOf(bestMatch.rule)).apply {
-                    add("variables", bestMatch.variables.map { Variable(it.key, it.value) }.toList())
-                    add("expr", bestMatch.expr)
-                    add("text", text)
-                    add("value", bestMatch.value)
-                }.render()
-            } else {
-                bestMatch.value.toString()
-            }
-        }
+            if (rendered) RuleRenderer(templates.templateOf(bestMatch.rule)).apply {
+                add("variables", bestMatch.variables.map { Variable(it.key, it.value) }.toList())
+                add("expr", bestMatch.expr)
+                add("text", text)
+                add("value", bestMatch.value)
+            }.render()
+            else bestMatch.value.toString()
+        } else Calculator().eval(normalize(text)).value.toString()
     }
 }
