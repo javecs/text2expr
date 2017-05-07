@@ -11,13 +11,13 @@ private val tokenizer = Tokenizer()
 
 private fun coverage(matched: Int, total: Int) = matched.toDouble() / total.toDouble()
 
-data class Evaluation(val value: Number = Double.NaN,
+internal data class Evaluation(val value: Number = Double.NaN,
                       val expr: List<String> = ArrayList(),
                       val variables: Map<String, Double> = HashMap(),
                       val coverage: Double = 0.0,
                       val rule: String = "")
 
-class RuleBuilder(source: String, val name: String = "") {
+internal class RuleBuilder(source: String, val name: String = "") {
     private val parser = RuleParser()
 
     init {

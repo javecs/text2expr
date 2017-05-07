@@ -4,7 +4,7 @@ import com.atilika.kuromoji.ipadic.Token
 
 private val Number = "数"
 
-fun List<Token>.toSimpleTokens(): List<SimpleToken> {
+internal fun List<Token>.toSimpleTokens(): List<SimpleToken> {
     val merged = ArrayList<SimpleToken>()
     for (token in this) {
         if (merged.isEmpty()) {
@@ -23,7 +23,7 @@ fun List<Token>.toSimpleTokens(): List<SimpleToken> {
     return merged
 }
 
-class SimpleToken(token: Token) {
+internal class SimpleToken(token: Token) {
     var surface: String = ""
     var partOfSpeechLevel1: String = ""
     var partOfSpeechLevel2: String = ""
