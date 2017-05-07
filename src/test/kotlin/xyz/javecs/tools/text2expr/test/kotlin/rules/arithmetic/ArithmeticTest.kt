@@ -13,6 +13,8 @@ class ArithmeticTest {
         assertEquals("16", text2Expr.eval("4 かける 4"))
         assertEquals("60", text2Expr.eval("30 × 2"))
         assertEquals("120", text2Expr.eval("24 x 5"))
+        assertEquals("7", text2Expr.eval("3.5x2"))
+        assertEquals("6", text2Expr.eval("3. x 2"))
     }
 
     @Test fun arithmetic2() {
