@@ -34,7 +34,7 @@ class TemplateLoaderTest {
             |<value>
             """.trimMargin("|")
         val config = TemplateLoader()
-        assertEquals(expected, config.templateOf("rules/length/mileToKilometer.txt"))
+        assertEquals(expected, config.templateOf("rules/length/milesToKilometers.txt"))
     }
 
 }
