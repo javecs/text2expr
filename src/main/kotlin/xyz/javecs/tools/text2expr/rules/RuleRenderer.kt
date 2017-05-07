@@ -2,8 +2,8 @@ package xyz.javecs.tools.text2expr.rules
 
 import org.stringtemplate.v4.ST
 
-data class Variable(val key: String, val value: Double)
-class RuleRenderer(template: String) {
+internal data class Variable(val key: String, val value: Double)
+internal class RuleRenderer(template: String) {
     private val renderer = ST(template)
 
     fun attributes(): Map<String, Any> = if (renderer.attributes == null) {

@@ -7,9 +7,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class FunctionLoaderTest {
-    val functionLoader = FunctionLoader()
 
     @Test fun read1() {
+        val functionLoader = FunctionLoader()
         val f = functionLoader.load("hello")
         assertEquals("f", f.name)
         assertEquals("x", f.params.first())
