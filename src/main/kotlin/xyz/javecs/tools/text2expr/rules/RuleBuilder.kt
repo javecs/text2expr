@@ -3,6 +3,7 @@ package xyz.javecs.tools.text2expr.rules
 import com.atilika.kuromoji.ipadic.Token
 import com.atilika.kuromoji.ipadic.Tokenizer
 import xyz.javecs.tools.expr.Calculator
+import xyz.javecs.tools.text2expr.utils.mergeNumber
 import xyz.javecs.tools.text2expr.utils.normalize
 
 private val BaseOffset = -1
@@ -54,7 +55,7 @@ class RuleBuilder(source: String, val name: String = "") {
             .toTypedArray()
 
     fun matches(text: String, recognizedId: (id: Pair<String, String>) -> Unit = {}): Pair<Boolean, Double> {
-        val tokens = tokenizer.tokenize(text)
+        val tokens = tokenizer.tokenize(text).mergeNumber()
         var offset = BaseOffset
         var remained = rule().size
         rule().forEach {
