@@ -1,6 +1,6 @@
 x=P2?数(1)
 SF:ガロン|"gal"
-SF?リッォル|"L"
+SF?リットル|"L"
 
 gal = x * 3.785412
 format(gal, 5)
